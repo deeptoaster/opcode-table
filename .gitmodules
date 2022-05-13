@@ -1,0 +1,3 @@
+[submodule "lib/cleverly"]
+	path = lib/cleverly
+	url = ssh://git@github.com/deeptoaster/cleverly

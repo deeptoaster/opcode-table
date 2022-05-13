@@ -1,0 +1,122 @@
+body,
+span {
+  font-family: Verdana;
+}
+body {
+  background-color: #d2d7d9;
+  font-size: 16px;
+}
+table {
+  table-layout: fixed;
+  position: relative;
+  margin: auto;
+  border-spacing: 0.1875em;
+  line-height: 1;
+}
+th,
+td {
+  padding: 0.5em;
+}
+th,
+th::after,
+td::before {
+  background-color: #374952;
+}
+th {
+  height: 3em;
+  color: #a6b8c1;
+  user-select: none;
+}
+td {
+  position: relative;
+  background-color: #a6b8c1;
+  color: #232627;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-family: "Courier New", Courier;
+  font-weight: bold;
+}
+tr:first-child th,
+td {
+  width: 4em;
+}
+tr:first-child th,
+tr:first-child td {
+  height: 1em;
+}
+tr:first-child td {
+  width: 1em;
+  background-color: transparent;
+}
+th::after,
+td::before {
+  content: "";
+  display: none;
+  position: absolute;
+  opacity: 0.2;
+}
+th::after {
+  right: 0.1875em;
+  left: 2.1875em;
+  z-index: 1;
+  height: 4em;
+  margin-top: -2.5em;
+}
+tr:first-child th::after {
+  top: 2.1875em;
+  right: auto;
+  bottom: 0.1875em;
+  left: auto;
+  width: 5em;
+  height: auto;
+  margin-top: 0;
+  margin-left: -0.5em;
+}
+th:hover::after,
+td:hover::before {
+  display: block;
+}
+th::after:hover {
+  display: none;
+}
+td::before {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+span {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -5em;
+  z-index: 1;
+  width: 13em;
+  margin-top: 1em;
+  padding: 1em;
+  box-shadow: 0 0 0.2em #806d15;
+  background-color: #e4ddb9;
+  color: #806d15;
+  font-weight: normal;
+}
+td:hover span {
+  display: block;
+}
+span::before,
+span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1em;
+}
+span::before {
+  left: 0;
+  right: 0;
+  height: 1em;
+}
+span::after {
+  left: 6.8em;
+  border-width: 0 0.7em 1em 0.7em;
+  border-style: solid;
+  border-color: #e4ddb9 transparent;
+}
