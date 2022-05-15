@@ -5,12 +5,6 @@
     <link href="opcode_table.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <table>
-      <tr>
-        <td>
-        <th>0</th>
-      </tr>
-{foreach from=$rows item=row}      {include file='row.tpl'}
-{/foreach}    </table>
-  </body>
+{foreach from=$tables item=table}    {include file='table.tpl'}
+{/foreach}  </body>
 </html>

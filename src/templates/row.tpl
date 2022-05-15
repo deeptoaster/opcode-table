@@ -1,4 +1,4 @@
 <tr>
-  <th>{$row.index}</th>
-{foreach from=$row.elements item=cell}  {include file='cell.tpl'}
+  <th>{$row.prefix}</th>
+{foreach from=$row.cells item=cell}  {include file='cell.tpl'}
 {/foreach}</tr>

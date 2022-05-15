@@ -1,10 +1,15 @@
 body,
 span {
-  font-family: Verdana;
+  font-family: serif;
 }
 body {
+  margin-bottom: 8em;
   background-color: #d2d7d9;
   font-size: 16px;
+}
+h1 {
+  margin-top: 2em;
+  text-align: center;
 }
 table {
   table-layout: fixed;
@@ -31,14 +36,15 @@ td {
   position: relative;
   background-color: #a6b8c1;
   color: #232627;
-  word-wrap: break-word;
   word-break: break-all;
-  font-family: "Courier New", Courier;
+  overflow-wrap: anywhere;
+  font-family: monospace;
   font-weight: bold;
 }
 tr:first-child th,
 td {
   width: 4em;
+  max-width: 4em;
 }
 tr:first-child th,
 tr:first-child td {
@@ -49,7 +55,7 @@ tr:first-child td {
   background-color: transparent;
 }
 th::after,
-td::before {
+tr + tr td::before {
   content: "";
   display: none;
   position: absolute;
