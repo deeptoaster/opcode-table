@@ -1,4 +1,6 @@
-<?
+<?php
+namespace ClrHome;
+
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
 
 class Opcode {
@@ -15,7 +17,7 @@ class OpcodeTable {
   public string $prefix;
   public array $rows;
 
-  final public static function fromFile($file_name): array {
+  final public static function fromFile(string $file_name): array {
     $tables = array();
     $json_opcodes = json_decode(file_get_contents($file_name));
 
@@ -65,7 +67,11 @@ class OpcodeTable {
 
       $opcode = &$row->cells[$column_index];
       $opcode->description = $json_opcode->opcode;
-      $opcode->mnemonic = strtolower($json_opcode->mnemonic);
+
+      $opcode->mnemonic = strtolower(
+        preg_replace('/[a-z]/', '<var>$0</var>', $json_opcode->mnemonic)
+      );
+
       unset($table);
       unset($row);
       unset($opcode);
@@ -84,7 +90,7 @@ class OpcodeTable {
   }
 }
 
-$cleverly = new Cleverly();
+$cleverly = new \Cleverly();
 $cleverly->preserveIndent = true;
 $cleverly->setTemplateDir(__DIR__ . '/templates');
 
