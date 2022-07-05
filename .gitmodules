@@ -1,3 +1,6 @@
 [submodule "lib/cleverly"]
 	path = lib/cleverly
 	url = ssh://git@github.com/deeptoaster/cleverly
+[submodule "lib/tools"]
+	path = lib/tools
+	url = ssh://git@github.com/deeptoaster/clrhome-tools-php
