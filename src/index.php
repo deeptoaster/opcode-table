@@ -1,6 +1,8 @@
 <?php
 namespace ClrHome;
 
+define('ClrHome\REGISTER_NAMES', ['B', 'C', 'D', 'E', 'H', 'L', null, 'A']);
+
 include(__DIR__ . '/../lib/tools/SimpleNumber.class.php');
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
 
@@ -29,7 +31,8 @@ class OpcodeTable {
         $json_opcode->bytes,
         0,
         '',
-        $json_opcode->mnemonic
+        $json_opcode->mnemonic,
+        []
       );
 
       foreach ($opcodes as $opcode) {
@@ -83,11 +86,16 @@ class OpcodeTable {
     return preg_replace('/\b[a-z]+\b/', '<var>$0</var>', $content);
   }
 
+  private static function formatHex(int $number) {
+    return str_pad(strtoupper(dechex($number)), 2, '0', STR_PAD_LEFT);
+  }
+
   private static function listOpcodesFromShorthand(
     array $bytes,
     int $byte_index,
     string $description,
-    string $mnemonic
+    string $mnemonic,
+    array $substitutions
   ): array {
     if ($byte_index === count($bytes)) {
       $opcode = new Opcode();
@@ -97,50 +105,115 @@ class OpcodeTable {
       $opcode->space =
           $byte_index + count(preg_grep('/^[a-z][a-z]$/', $bytes));
       return [$opcode];
-    } else if (strpos($bytes[$byte_index], 'b') !== false) {
+    } else if (
+      !array_key_exists('b', $substitutions) &&
+          strpos($bytes[$byte_index], 'b') !== false
+    ) {
       return array_merge(...array_map(function(int $bit) use (
         $byte_index,
         $bytes,
         $description,
-        $mnemonic
+        $mnemonic,
+        $substitutions
       ): array {
-        $bytes[$byte_index] = str_pad(strtoupper(dechex(SimpleNumber::from(
-          $bytes[$byte_index],
-          ['b' => $bit]
-        )->real)), 2, '0', STR_PAD_LEFT);
-
         return self::listOpcodesFromShorthand(
           $bytes,
-          $byte_index + 1,
+          $byte_index,
           $description,
-          str_replace('b', $bit, $mnemonic)
+          str_replace('b', $bit, $mnemonic),
+          $substitutions + ['b' => $bit]
         );
       }, range(0, 7)));
-    } else if (strpos($bytes[$byte_index], 'p') !== false) {
+    } else if (
+      !array_key_exists('p', $substitutions) &&
+          strpos($bytes[$byte_index], 'p') !== false
+    ) {
       return array_merge(...array_map(function(int $byte) use (
         $byte_index,
         $bytes,
         $description,
-        $mnemonic
+        $mnemonic,
+        $substitutions
       ): array {
-        $bytes[$byte_index] = str_pad(strtoupper(dechex(SimpleNumber::from(
-          $bytes[$byte_index],
-          ['p' => $byte]
-        )->real)), 2, '0', STR_PAD_LEFT);
-
         return self::listOpcodesFromShorthand(
           $bytes,
-          $byte_index + 1,
+          $byte_index,
           $description,
-          str_replace('p', $byte, $mnemonic)
+          str_replace('p', self::formatHex($byte) . 'H', $mnemonic),
+          $substitutions + ['p' => $byte]
         );
       }, range(0x00, 0x38, 0x08)));
+    } else if (
+      !array_key_exists('r1', $substitutions) &&
+          strpos($bytes[$byte_index], 'r1') !== false
+    ) {
+      return array_merge(...array_map(function(int $register) use (
+        $byte_index,
+        $bytes,
+        $description,
+        $mnemonic,
+        $substitutions
+      ): array {
+        return self::listOpcodesFromShorthand(
+          $bytes,
+          $byte_index,
+          $description,
+          str_replace('r1', REGISTER_NAMES[$register], $mnemonic),
+          $substitutions + ['r1' => $register]
+        );
+      }, array_diff(range(0, 7), [6])));
+    } else if (
+      !array_key_exists('r2', $substitutions) &&
+          strpos($bytes[$byte_index], 'r2') !== false
+    ) {
+      return array_merge(...array_map(function(int $register) use (
+        $byte_index,
+        $bytes,
+        $description,
+        $mnemonic,
+        $substitutions
+      ): array {
+        return self::listOpcodesFromShorthand(
+          $bytes,
+          $byte_index,
+          $description,
+          str_replace('r2', REGISTER_NAMES[$register], $mnemonic),
+          $substitutions + ['r2' => $register]
+        );
+      }, array_diff(range(0, 7), [6])));
+    } else if (
+      !array_key_exists('r', $substitutions) &&
+          strpos($bytes[$byte_index], 'r') !== false
+    ) {
+      return array_merge(...array_map(function(int $register) use (
+        $byte_index,
+        $bytes,
+        $description,
+        $mnemonic,
+        $substitutions
+      ): array {
+        return self::listOpcodesFromShorthand(
+          $bytes,
+          $byte_index,
+          $description,
+          str_replace('r', REGISTER_NAMES[$register], $mnemonic),
+          $substitutions + ['r' => $register]
+        );
+      }, array_diff(range(0, 7), [6])));
     } else {
+      if (count($substitutions) !== 0) {
+        $bytes[$byte_index] = self::formatHex(SimpleNumber::from(
+          $bytes[$byte_index],
+          $substitutions
+        )->real);
+      }
+
       return self::listOpcodesFromShorthand(
         $bytes,
         $byte_index + 1,
         $description,
-        $mnemonic
+        $mnemonic,
+        []
       );
     }
   }
