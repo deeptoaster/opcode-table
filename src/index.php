@@ -224,6 +224,6 @@ $cleverly->preserveIndent = true;
 $cleverly->setTemplateDir(__DIR__ . '/templates');
 
 $cleverly->display('index.tpl', [
-  'tables' => OpcodeTable::fromFile(__DIR__ . '/opcode_table.json')
+  'tables' => OpcodeTable::fromFile(__DIR__ . '/../opcode_table.json')
 ]);
 ?>
