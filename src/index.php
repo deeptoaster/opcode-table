@@ -8,6 +8,7 @@ class Opcode {
   public string $bytes = '';
   public string $description = '';
   public string $mnemonic = '';
+  public int $space = 0;
 }
 
 class OpcodeRow {
@@ -78,6 +79,10 @@ class OpcodeTable {
     return $tables;
   }
 
+  private static function applyArgumentStyling(string $content) {
+    return preg_replace('/\b[a-z]+\b/', '<var>$0</var>', $content);
+  }
+
   private static function listOpcodesFromShorthand(
     array $bytes,
     int $byte_index,
@@ -86,10 +91,11 @@ class OpcodeTable {
   ): array {
     if ($byte_index === count($bytes)) {
       $opcode = new Opcode();
-      $opcode->bytes = implode(' ', $bytes);
+      $opcode->bytes = self::applyArgumentStyling(implode(' ', $bytes));
       $opcode->description = $description;
-      $opcode->mnemonic =
-          strtolower(preg_replace('/[a-z]/', '<var>$0</var>', $mnemonic));
+      $opcode->mnemonic = strtolower(self::applyArgumentStyling($mnemonic));
+      $opcode->space =
+          $byte_index + count(preg_grep('/^[a-z][a-z]$/', $bytes));
       return [$opcode];
     } else if (strpos($bytes[$byte_index], 'b') !== false) {
       return array_merge(...array_map(function(int $bit) use (

@@ -91,7 +91,7 @@ td::before {
   bottom: 0;
   left: 0;
 }
-span {
+dl {
   display: none;
   position: absolute;
   top: 100%;
@@ -105,24 +105,35 @@ span {
   color: #806d15;
   font-weight: normal;
 }
-td:hover span {
+td:hover dl {
   display: block;
 }
-span::before,
-span::after {
+dl::before,
+dl::after {
   content: "";
   display: block;
   position: absolute;
   top: -1em;
 }
-span::before {
+dl::before {
   left: 0;
   right: 0;
   height: 1em;
 }
-span::after {
+dl::after {
   left: 6.8em;
   border-width: 0 0.7em 1em 0.7em;
   border-style: solid;
   border-color: #e4ddb9 transparent;
+}
+dt {
+  float: left;
+  font-weight: bold;
+}
+dt::after {
+  content: ": ";
+  white-space: pre-wrap;
+}
+dd {
+  margin: 0;
 }

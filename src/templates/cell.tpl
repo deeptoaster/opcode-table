@@ -1,4 +1,10 @@
 <td>
   {$cell.mnemonic}
-  <span>{$cell.description}</span>
+  <dl>
+    <dt>Opcode</dt>
+    <dd>{$cell.bytes}</dd>
+    <dt>Bytes</dt>
+    <dd>{$cell.space}</dd>
+    <dd>{$cell.description}</dd>
+  </dl>
 </td>
