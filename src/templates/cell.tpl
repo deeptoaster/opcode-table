@@ -5,6 +5,8 @@
     <dd>{$cell.bytes}</dd>
     <dt>Bytes</dt>
     <dd>{$cell.space}</dd>
+    <dt>Cycles</dt>
+    <dd>{$cell.cycles}</dd>
     <dd>{$cell.description}</dd>
   </dl>
 </td>

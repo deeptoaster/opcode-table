@@ -2,12 +2,14 @@
 namespace ClrHome;
 
 define('ClrHome\REGISTER_NAMES', ['B', 'C', 'D', 'E', 'H', 'L', null, 'A']);
+define('ClrHome\ITERATED_PARAMETERS', ['b', 'p', 'r', 'r1', 'r2']);
 
 include(__DIR__ . '/../lib/tools/SimpleNumber.class.php');
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
 
 class Opcode {
   public string $bytes = '';
+  public string $cycles = '';
   public string $description = '';
   public string $mnemonic = '';
   public int $space = 0;
@@ -30,7 +32,12 @@ class OpcodeTable {
       $opcodes = self::listOpcodesFromShorthand(
         $json_opcode->bytes,
         0,
-        '',
+        property_exists($json_opcode, 'cycles')
+          ? $json_opcode->cycles
+          : 'unknown',
+        property_exists($json_opcode, 'description')
+          ? $json_opcode->description
+          : 'unknown',
         $json_opcode->mnemonic,
         []
       );
@@ -93,6 +100,7 @@ class OpcodeTable {
   private static function listOpcodesFromShorthand(
     array $bytes,
     int $byte_index,
+    string $cycles,
     string $description,
     string $mnemonic,
     array $substitutions
@@ -100,7 +108,20 @@ class OpcodeTable {
     if ($byte_index === count($bytes)) {
       $opcode = new Opcode();
       $opcode->bytes = self::applyArgumentStyling(implode(' ', $bytes));
-      $opcode->description = $description;
+      $opcode->cycles = $cycles;
+
+      $opcode->description = preg_replace_callback(
+        '/\$(\w+)/',
+        function($matches) use ($mnemonic, $substitutions) {
+          return in_array($matches[1], ITERATED_PARAMETERS)
+            ? $matches[1][0] === 'r'
+              ? REGISTER_NAMES[$substitutions[$matches[1]]]
+              : $substitutions[$matches[1]]
+            : "<var>$matches[1]</var>";
+        },
+        $description
+      );
+
       $opcode->mnemonic = strtolower(self::applyArgumentStyling($mnemonic));
       $opcode->space =
           $byte_index + count(preg_grep('/^[a-z][a-z]$/', $bytes));
@@ -112,6 +133,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $bit) use (
         $byte_index,
         $bytes,
+        $cycles,
         $description,
         $mnemonic,
         $substitutions
@@ -119,9 +141,10 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $cycles,
           $description,
           str_replace('b', $bit, $mnemonic),
-          $substitutions + ['b' => $bit]
+          array_merge($substitutions, ['b' => $bit])
         );
       }, range(0, 7)));
     } else if (
@@ -131,6 +154,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $byte) use (
         $byte_index,
         $bytes,
+        $cycles,
         $description,
         $mnemonic,
         $substitutions
@@ -138,9 +162,10 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $cycles,
           $description,
           str_replace('p', self::formatHex($byte) . 'H', $mnemonic),
-          $substitutions + ['p' => $byte]
+          array_merge($substitutions, ['p' => $byte])
         );
       }, range(0x00, 0x38, 0x08)));
     } else if (
@@ -150,6 +175,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $cycles,
         $description,
         $mnemonic,
         $substitutions
@@ -157,9 +183,10 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $cycles,
           $description,
           str_replace('r1', REGISTER_NAMES[$register], $mnemonic),
-          $substitutions + ['r1' => $register]
+          array_merge($substitutions, ['r1' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else if (
@@ -169,6 +196,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $cycles,
         $description,
         $mnemonic,
         $substitutions
@@ -176,9 +204,10 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $cycles,
           $description,
           str_replace('r2', REGISTER_NAMES[$register], $mnemonic),
-          $substitutions + ['r2' => $register]
+          array_merge($substitutions, ['r2' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else if (
@@ -188,6 +217,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $cycles,
         $description,
         $mnemonic,
         $substitutions
@@ -195,13 +225,17 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $cycles,
           $description,
           str_replace('r', REGISTER_NAMES[$register], $mnemonic),
-          $substitutions + ['r' => $register]
+          array_merge($substitutions, ['r' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else {
-      if (count($substitutions) !== 0) {
+      if (preg_match(
+        '/' . implode('|', ITERATED_PARAMETERS) . '/',
+        $bytes[$byte_index]
+      )) {
         $bytes[$byte_index] = self::formatHex(SimpleNumber::from(
           $bytes[$byte_index],
           $substitutions
@@ -211,9 +245,10 @@ class OpcodeTable {
       return self::listOpcodesFromShorthand(
         $bytes,
         $byte_index + 1,
+        $cycles,
         $description,
         $mnemonic,
-        []
+        $substitutions
       );
     }
   }
