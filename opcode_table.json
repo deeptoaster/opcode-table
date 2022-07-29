@@ -715,7 +715,7 @@
   {
     "bytes": ["ED", "70"],
     "cycles": "12",
-    "description": "Inputs a byte from port C and affects flags oniyl.",
+    "description": "Inputs a byte from port C and affects flags only.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "IN (C)",
     "undefined": true
@@ -1842,8 +1842,21 @@
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "OR r"
   },
-  { "bytes": ["ED", "8B"], "mnemonic": "OTDM", "z180": true },
-  { "bytes": ["ED", "9B"], "mnemonic": "OTDMR", "z180": true },
+  {
+    "bytes": ["ED", "8B"],
+    "cycles": "14",
+    "description": "A byte from the memory location pointed to by HL is written to port C. Then HL, B, and C are decremented.",
+    "flags": { "c": "+", "h": "+", "n": "*", "p/v": "p", "s": "+", "z": "*" },
+    "mnemonic": "OTDM",
+    "z180": true
+  },
+  {
+    "bytes": ["ED", "9B"],
+    "description": "A byte from the memory location pointed to by HL is written to port C. Then HL, B, and C are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
+    "mnemonic": "OTDMR",
+    "z180": true
+  },
   {
     "bytes": ["ED", "BB"],
     "cycles": "21/16",
@@ -1851,8 +1864,21 @@
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "OTDR"
   },
-  { "bytes": ["ED", "83"], "mnemonic": "OTIM", "z180": true },
-  { "bytes": ["ED", "93"], "mnemonic": "OTIMR", "z180": true },
+  {
+    "bytes": ["ED", "83"],
+    "cycles": "14",
+    "description": "A byte from the memory location pointed to by HL is written to port C. Then HL and C are incremented and B is decremented.",
+    "flags": { "c": "+", "h": "+", "n": "*", "p/v": "p", "s": "+", "z": "*" },
+    "mnemonic": "OTIM",
+    "z180": true
+  },
+  {
+    "bytes": ["ED", "93"],
+    "description": "A byte from the memory location pointed to by HL is written to port C. Then HL and C are incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
+    "mnemonic": "OTIMR",
+    "z180": true
+  },
   {
     "bytes": ["ED", "B3"],
     "cycles": "21/16",
@@ -2703,10 +2729,38 @@
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB r"
   },
-  { "bytes": ["ED", "34"], "mnemonic": "TST (HL)", "z180": true },
-  { "bytes": ["ED", "64", "n"], "mnemonic": "TST n", "z180": true },
-  { "bytes": ["ED", "(r<<3)+$04"], "mnemonic": "TST r", "z180": true },
-  { "bytes": ["ED", "74", "n"], "mnemonic": "TSTIO n", "z180": true },
+  {
+    "bytes": ["ED", "34"],
+    "cycles": "10",
+    "description": "Calculates the bitwise AND of (HL) with A and affects flags according to the result. A is not modified.",
+    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "TST (HL)",
+    "z180": true
+  },
+  {
+    "bytes": ["ED", "64", "n"],
+    "cycles": "10",
+    "description": "Calculates the bitwise AND of $n with A and affects flags according to the result. A is not modified.",
+    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "TST n",
+    "z180": true
+  },
+  {
+    "bytes": ["ED", "(r<<3)+$04"],
+    "cycles": "10",
+    "description": "Calculates the bitwise AND of $r with A and affects flags according to the result. A is not modified.",
+    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "TST r",
+    "z180": true
+  },
+  {
+    "bytes": ["ED", "74", "n"],
+    "cycles": "12",
+    "description": "Calculates the bitwise AND of $n with (C) and affects flags according to the result. (C) is not modified.",
+    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "TSTIO n",
+    "z180": true
+  },
   {
     "bytes": ["AE"],
     "cycles": "7",
