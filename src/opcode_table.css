@@ -41,6 +41,14 @@ td {
   font-family: monospace;
   font-weight: bold;
 }
+td.undefined {
+  background-color: #ddb6be;
+  color: #761429;
+}
+td.z180 {
+  background-color: #467286;
+  color: #d1d9dc;
+}
 tr:first-child th,
 td {
   width: 4em;

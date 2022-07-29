@@ -1,4 +1,4 @@
-<td>
+<td{if $cell}{if $cell.class} class="{$cell.class}"{/if}{/if}>{if $cell}
   {$cell.mnemonic}
   <dl>
     <dt>Opcode</dt>
@@ -9,4 +9,4 @@
     <dd>{$cell.cycles}</dd>
     <dd>{$cell.description}</dd>
   </dl>
-</td>
+{/if}</td>

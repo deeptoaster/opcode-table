@@ -32,12 +32,20 @@ class OpcodeTable {
       $opcodes = self::listOpcodesFromShorthand(
         $json_opcode->bytes,
         0,
+        implode(' ', array_filter([
+          property_exists($json_opcode, 'undefined')
+            ? $json_opcode->undefined ? 'undefined' : ''
+            : '',
+          property_exists($json_opcode, 'z180')
+            ? $json_opcode->z180 ? 'z180' : ''
+            : ''
+        ])),
         property_exists($json_opcode, 'cycles')
           ? $json_opcode->cycles
           : 'unknown',
         property_exists($json_opcode, 'description')
           ? $json_opcode->description
-          : 'unknown',
+          : '',
         $json_opcode->mnemonic,
         []
       );
@@ -64,7 +72,7 @@ class OpcodeTable {
           $table->rows[$row_index] = &$row;
 
           for ($index = 0; $index < 16; $index++) {
-            $row->cells[strtoupper(dechex($index))] = new Opcode();
+            $row->cells[strtoupper(dechex($index))] = null;
           }
         } else {
           $row = &$table->rows[$row_index];
@@ -100,6 +108,7 @@ class OpcodeTable {
   private static function listOpcodesFromShorthand(
     array $bytes,
     int $byte_index,
+    string $class,
     string $cycles,
     string $description,
     string $mnemonic,
@@ -108,6 +117,7 @@ class OpcodeTable {
     if ($byte_index === count($bytes)) {
       $opcode = new Opcode();
       $opcode->bytes = self::applyArgumentStyling(implode(' ', $bytes));
+      $opcode->class = $class;
       $opcode->cycles = $cycles;
 
       $opcode->description = preg_replace_callback(
@@ -133,6 +143,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $bit) use (
         $byte_index,
         $bytes,
+        $class,
         $cycles,
         $description,
         $mnemonic,
@@ -141,6 +152,7 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $class,
           $cycles,
           $description,
           str_replace('b', $bit, $mnemonic),
@@ -154,6 +166,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $byte) use (
         $byte_index,
         $bytes,
+        $class,
         $cycles,
         $description,
         $mnemonic,
@@ -162,6 +175,7 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $class,
           $cycles,
           $description,
           str_replace('p', self::formatHex($byte) . 'H', $mnemonic),
@@ -175,6 +189,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $class,
         $cycles,
         $description,
         $mnemonic,
@@ -183,6 +198,7 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $class,
           $cycles,
           $description,
           str_replace('r1', REGISTER_NAMES[$register], $mnemonic),
@@ -196,6 +212,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $class,
         $cycles,
         $description,
         $mnemonic,
@@ -204,6 +221,7 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $class,
           $cycles,
           $description,
           str_replace('r2', REGISTER_NAMES[$register], $mnemonic),
@@ -217,6 +235,7 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $bytes,
+        $class,
         $cycles,
         $description,
         $mnemonic,
@@ -225,6 +244,7 @@ class OpcodeTable {
         return self::listOpcodesFromShorthand(
           $bytes,
           $byte_index,
+          $class,
           $cycles,
           $description,
           str_replace('r', REGISTER_NAMES[$register], $mnemonic),
@@ -245,6 +265,7 @@ class OpcodeTable {
       return self::listOpcodesFromShorthand(
         $bytes,
         $byte_index + 1,
+        $class,
         $cycles,
         $description,
         $mnemonic,

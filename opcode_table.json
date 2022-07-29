@@ -23,30 +23,34 @@
   {
     "bytes": ["DD", "8C"],
     "cycles": "8",
-    "description": "Adds HX and the carry flag to A.",
+    "description": "Adds IXH and the carry flag to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC A,HX"
-  },
-  {
-    "bytes": ["FD", "8C"],
-    "cycles": "8",
-    "description": "Adds HY and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC A,HY"
+    "mnemonic": "ADC A,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "8D"],
     "cycles": "8",
-    "description": "Adds LX and the carry flag to A.",
+    "description": "Adds IXL and the carry flag to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC A,LX"
+    "mnemonic": "ADC A,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "8C"],
+    "cycles": "8",
+    "description": "Adds IYH and the carry flag to A.",
+    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "ADC A,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "8D"],
     "cycles": "8",
-    "description": "Adds LY and the carry flag to A.",
+    "description": "Adds IYL and the carry flag to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC A,LY"
+    "mnemonic": "ADC A,IYL",
+    "undefined": true
   },
   {
     "bytes": ["CE", "n"],
@@ -86,7 +90,7 @@
   {
     "bytes": ["ED", "7A"],
     "cycles": "15",
-    "description": "Adds sp and the carry flag to HL.",
+    "description": "Adds SP and the carry flag to HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC HL,SP"
   },
@@ -114,30 +118,34 @@
   {
     "bytes": ["DD", "84"],
     "cycles": "8",
-    "description": "Adds HX to A.",
+    "description": "Adds IXH to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADD A,HX"
-  },
-  {
-    "bytes": ["FD", "84"],
-    "cycles": "8",
-    "description": "Adds HY to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADD A,HY"
+    "mnemonic": "ADD A,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "85"],
     "cycles": "8",
-    "description": "Adds LX to A.",
+    "description": "Adds IXL to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADD A,LX"
+    "mnemonic": "ADD A,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "84"],
+    "cycles": "8",
+    "description": "Adds IYH to A.",
+    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "ADD A,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "85"],
     "cycles": "8",
-    "description": "Adds LY to A.",
+    "description": "Adds IYL to A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADD A,LY"
+    "mnemonic": "ADD A,IYL",
+    "undefined": true
   },
   {
     "bytes": ["C6", "n"],
@@ -177,7 +185,7 @@
   {
     "bytes": ["39"],
     "cycles": "11",
-    "description": "The value of sp is added to HL.",
+    "description": "The value of SP is added to HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD HL,SP"
   },
@@ -205,7 +213,7 @@
   {
     "bytes": ["DD", "39"],
     "cycles": "15",
-    "description": "The value of sp is added to IX.",
+    "description": "The value of SP is added to IX.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD IX,SP"
   },
@@ -233,7 +241,7 @@
   {
     "bytes": ["FD", "39"],
     "cycles": "15",
-    "description": "The value of sp is added to IY.",
+    "description": "The value of SP is added to IY.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD IY,SP"
   },
@@ -261,30 +269,34 @@
   {
     "bytes": ["DD", "A4"],
     "cycles": "8",
-    "description": "Bitwise AND on A with HX.",
+    "description": "Bitwise AND on A with IXH.",
     "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "AND HX"
-  },
-  {
-    "bytes": ["FD", "A4"],
-    "cycles": "8",
-    "description": "Bitwise AND on A with HY.",
-    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "AND HY"
+    "mnemonic": "AND IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "A5"],
     "cycles": "8",
-    "description": "Bitwise AND on A with LX.",
+    "description": "Bitwise AND on A with IXL.",
     "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "AND LX"
+    "mnemonic": "AND IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "A4"],
+    "cycles": "8",
+    "description": "Bitwise AND on A with IYH.",
+    "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "AND IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "A5"],
     "cycles": "8",
-    "description": "Bitwise AND on A with LY.",
+    "description": "Bitwise AND on A with IYL.",
     "flags": { "c": "0", "h": "1", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "AND LY"
+    "mnemonic": "AND IYL",
+    "undefined": true
   },
   {
     "bytes": ["E6", "n"],
@@ -422,30 +434,34 @@
   {
     "bytes": ["DD", "BC"],
     "cycles": "8",
-    "description": "Subtracts HX from A and affects flags according to the result. A is not modified.",
+    "description": "Subtracts IXH from A and affects flags according to the result. A is not modified.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "CP HX"
-  },
-  {
-    "bytes": ["FD", "BC"],
-    "cycles": "8",
-    "description": "Subtracts HY from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "CP HY"
+    "mnemonic": "CP IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "BD"],
     "cycles": "8",
-    "description": "Subtracts LX from A and affects flags according to the result. A is not modified.",
+    "description": "Subtracts IXL from A and affects flags according to the result. A is not modified.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "CP LX"
+    "mnemonic": "CP IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "BC"],
+    "cycles": "8",
+    "description": "Subtracts IYH from A and affects flags according to the result. A is not modified.",
+    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "CP IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "BD"],
     "cycles": "8",
-    "description": "Subtracts LY from A and affects flags according to the result. A is not modified.",
+    "description": "Subtracts IYL from A and affects flags according to the result. A is not modified.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "CP LY"
+    "mnemonic": "CP IYL",
+    "undefined": true
   },
   {
     "bytes": ["FE", "n"],
@@ -546,25 +562,27 @@
     "mnemonic": "DEC HL"
   },
   {
-    "bytes": ["DD", "25"],
-    "cycles": "8",
-    "description": "Subtracts one from HX.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "DEC HX"
-  },
-  {
-    "bytes": ["FD", "25"],
-    "cycles": "8",
-    "description": "Subtracts one from HY.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "DEC HY"
-  },
-  {
     "bytes": ["DD", "2B"],
     "cycles": "10",
     "description": "Subtracts one from IX.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "DEC IX"
+  },
+  {
+    "bytes": ["DD", "25"],
+    "cycles": "8",
+    "description": "Subtracts one from IXH.",
+    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "DEC IXH",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "2D"],
+    "cycles": "8",
+    "description": "Subtracts one from IXL.",
+    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "DEC IXL",
+    "undefined": true
   },
   {
     "bytes": ["FD", "2B"],
@@ -574,23 +592,25 @@
     "mnemonic": "DEC IY"
   },
   {
-    "bytes": ["DD", "2D"],
+    "bytes": ["FD", "25"],
     "cycles": "8",
-    "description": "Subtracts one from LX.",
+    "description": "Subtracts one from IYH.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "DEC LX"
+    "mnemonic": "DEC IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "2D"],
     "cycles": "8",
-    "description": "Subtracts one from LY.",
+    "description": "Subtracts one from IYL.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "DEC LY"
+    "mnemonic": "DEC IYL",
+    "undefined": true
   },
   {
     "bytes": ["3B"],
     "cycles": "6",
-    "description": "Subtracts one from sp.",
+    "description": "Subtracts one from SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "DEC SP"
   },
@@ -618,28 +638,28 @@
   {
     "bytes": ["FB"],
     "cycles": "4",
-    "description": "Sets both interrupt flip-flops, thus allowing maskable interrupts to occur. An interrupt will not occur until after the immediatedly following instruction.",
+    "description": "Sets both interrupt flip-flops, thus allowing maskable interrupts to occur. An interrupt will not occur until after the immediatediyl following instruction.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "EI"
   },
   {
     "bytes": ["E3"],
     "cycles": "19",
-    "description": "Exchanges (sp) with L, and (sp+1) with H.",
+    "description": "Exchanges (SP) with L, and (SP+1) with H.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "EX (SP),HL"
   },
   {
     "bytes": ["DD", "E3"],
     "cycles": "23",
-    "description": "Exchanges (sp) with LX, and (sp+1) with HX.",
+    "description": "Exchanges (SP) with IXL, and (SP+1) with IXH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "EX (SP),IX"
   },
   {
     "bytes": ["FD", "E3"],
     "cycles": "23",
-    "description": "Exchanges (sp) with LY, and (sp+1) with HY.",
+    "description": "Exchanges (SP) with IYL, and (SP+1) with IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "EX (SP),IY"
   },
@@ -695,9 +715,10 @@
   {
     "bytes": ["ED", "70"],
     "cycles": "12",
-    "description": "Inputs a byte from port C and affects flags only.",
+    "description": "Inputs a byte from port C and affects flags oniyl.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "IN (C)"
+    "mnemonic": "IN (C)",
+    "undefined": true
   },
   {
     "bytes": ["DB", "n"],
@@ -713,7 +734,14 @@
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "IN r,(C)"
   },
-  { "bytes": ["ED", "(r<<3)+$00"], "mnemonic": "IN0 r,(n)" },
+  {
+    "bytes": ["ED", "(r<<3)+$00", "n"],
+    "cycles": "12",
+    "description": "A byte from the port whose address is formed by 00h in the high bits and $n in the low bits is written to $r.",
+    "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "IN0 r,(n)",
+    "z180": true
+  },
   {
     "bytes": ["34"],
     "cycles": "11",
@@ -757,25 +785,27 @@
     "mnemonic": "INC HL"
   },
   {
-    "bytes": ["DD", "24"],
-    "cycles": "8",
-    "description": "Adds one to HX.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "INC HX"
-  },
-  {
-    "bytes": ["FD", "24"],
-    "cycles": "8",
-    "description": "Adds one to HY.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "INC HY"
-  },
-  {
     "bytes": ["DD", "23"],
     "cycles": "10",
     "description": "Adds one to IX.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "INC IX"
+  },
+  {
+    "bytes": ["DD", "24"],
+    "cycles": "8",
+    "description": "Adds one to IXH.",
+    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "INC IXH",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "2C"],
+    "cycles": "8",
+    "description": "Adds one to IXL.",
+    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "INC IXL",
+    "undefined": true
   },
   {
     "bytes": ["FD", "23"],
@@ -785,23 +815,25 @@
     "mnemonic": "INC IY"
   },
   {
-    "bytes": ["DD", "2C"],
+    "bytes": ["FD", "24"],
     "cycles": "8",
-    "description": "Adds one to LX.",
+    "description": "Adds one to IYH.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "INC LX"
+    "mnemonic": "INC IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "2C"],
     "cycles": "8",
-    "description": "Adds one to LY.",
+    "description": "Adds one to IYL.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "INC LY"
+    "mnemonic": "INC IYL",
+    "undefined": true
   },
   {
     "bytes": ["33"],
     "cycles": "6",
-    "description": "Adds one to sp.",
+    "description": "Adds one to SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "INC SP"
   },
@@ -995,7 +1027,7 @@
     "mnemonic": "LD (IX+d),n"
   },
   {
-    "bytes": ["DD", "(r<<3)+$70", "d"],
+    "bytes": ["DD", "r+$70", "d"],
     "cycles": "19",
     "description": "Stores $r to the memory location pointed to by IX plus $d.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
@@ -1060,7 +1092,7 @@
   {
     "bytes": ["ED", "73", "nn"],
     "cycles": "20",
-    "description": "Stores sp into the memory location pointed to by $nn.",
+    "description": "Stores SP into the memory location pointed to by $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD (nn),SP"
   },
@@ -1086,20 +1118,6 @@
     "mnemonic": "LD A,(nn)"
   },
   {
-    "bytes": ["DD", "7C"],
-    "cycles": "8",
-    "description": "The contents of HX are loaded into A.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD A,HX"
-  },
-  {
-    "bytes": ["FD", "7C"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into A.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD A,HY"
-  },
-  {
     "bytes": ["ED", "57"],
     "cycles": "9",
     "description": "Stores the value of register i or r into A.",
@@ -1107,18 +1125,36 @@
     "mnemonic": "LD A,I"
   },
   {
+    "bytes": ["DD", "7C"],
+    "cycles": "8",
+    "description": "The contents of IXH are loaded into A.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD A,IXH",
+    "undefined": true
+  },
+  {
     "bytes": ["DD", "7D"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into A.",
+    "description": "The contents of IXL are loaded into A.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD A,LX"
+    "mnemonic": "LD A,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "7C"],
+    "cycles": "8",
+    "description": "The contents of IYH are loaded into A.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD A,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "7D"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into A.",
+    "description": "The contents of IYL are loaded into A.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD A,LY"
+    "mnemonic": "LD A,IYL",
+    "undefined": true
   },
   {
     "bytes": ["ED", "5F"],
@@ -1130,30 +1166,34 @@
   {
     "bytes": ["DD", "44"],
     "cycles": "8",
-    "description": "The contents of HX are loaded into B.",
+    "description": "The contents of IXH are loaded into B.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD B,HX"
-  },
-  {
-    "bytes": ["FD", "44"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into B.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD B,HY"
+    "mnemonic": "LD B,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "45"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into B.",
+    "description": "The contents of IXL are loaded into B.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD B,LX"
+    "mnemonic": "LD B,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "44"],
+    "cycles": "8",
+    "description": "The contents of IYH are loaded into B.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD B,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "45"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into B.",
+    "description": "The contents of IYL are loaded into B.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD B,LY"
+    "mnemonic": "LD B,IYL",
+    "undefined": true
   },
   {
     "bytes": ["ED", "4B", "nn"],
@@ -1172,58 +1212,66 @@
   {
     "bytes": ["DD", "4C"],
     "cycles": "8",
-    "description": "The contents of HX are loaded into C.",
+    "description": "The contents of IXH are loaded into C.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD C,HX"
-  },
-  {
-    "bytes": ["FD", "4C"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into C.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD C,HY"
+    "mnemonic": "LD C,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "4D"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into C.",
+    "description": "The contents of IXL are loaded into C.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD C,LX"
+    "mnemonic": "LD C,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "4C"],
+    "cycles": "8",
+    "description": "The contents of IYH are loaded into C.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD C,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "4D"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into C.",
+    "description": "The contents of IYL are loaded into C.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD C,LY"
+    "mnemonic": "LD C,IYL",
+    "undefined": true
   },
   {
     "bytes": ["DD", "54"],
     "cycles": "8",
-    "description": "The contents of HX are loaded into D.",
+    "description": "The contents of IXH are loaded into D.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD D,HX"
-  },
-  {
-    "bytes": ["FD", "54"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into D.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD D,HY"
+    "mnemonic": "LD D,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "55"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into D.",
+    "description": "The contents of IXL are loaded into D.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD D,LX"
+    "mnemonic": "LD D,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "54"],
+    "cycles": "8",
+    "description": "The contents of IYH are loaded into D.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD D,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "55"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into D.",
+    "description": "The contents of IYL are loaded into D.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD D,LY"
+    "mnemonic": "LD D,IYL",
+    "undefined": true
   },
   {
     "bytes": ["ED", "5B", "nn"],
@@ -1242,30 +1290,34 @@
   {
     "bytes": ["DD", "5C"],
     "cycles": "8",
-    "description": "The contents of HX are loaded into E.",
+    "description": "The contents of IXH are loaded into E.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD E,HX"
-  },
-  {
-    "bytes": ["FD", "5C"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into E.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD E,HY"
+    "mnemonic": "LD E,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "5D"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into E.",
+    "description": "The contents of IXL are loaded into E.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD E,LX"
+    "mnemonic": "LD E,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "5C"],
+    "cycles": "8",
+    "description": "The contents of IYH are loaded into E.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD E,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "5D"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into E.",
+    "description": "The contents of IYL are loaded into E.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD E,LY"
+    "mnemonic": "LD E,IYL",
+    "undefined": true
   },
   {
     "bytes": ["2A", "nn"],
@@ -1280,118 +1332,6 @@
     "description": "Loads $nn into HL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD HL,nn"
-  },
-  {
-    "bytes": ["DD", "67"],
-    "cycles": "8",
-    "description": "The contents of A are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,A"
-  },
-  {
-    "bytes": ["DD", "60"],
-    "cycles": "8",
-    "description": "The contents of B are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,B"
-  },
-  {
-    "bytes": ["DD", "61"],
-    "cycles": "8",
-    "description": "The contents of C are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,C"
-  },
-  {
-    "bytes": ["DD", "62"],
-    "cycles": "8",
-    "description": "The contents of D are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,D"
-  },
-  {
-    "bytes": ["DD", "63"],
-    "cycles": "8",
-    "description": "The contents of E are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,E"
-  },
-  {
-    "bytes": ["DD", "64"],
-    "cycles": "8",
-    "description": "The contents of HX are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,HX"
-  },
-  {
-    "bytes": ["DD", "65"],
-    "cycles": "8",
-    "description": "The contents of LX are loaded into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,LX"
-  },
-  {
-    "bytes": ["DD", "26", "n"],
-    "cycles": "11",
-    "description": "Loads $n into HX.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HX,n"
-  },
-  {
-    "bytes": ["FD", "67"],
-    "cycles": "8",
-    "description": "The contents of A are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,A"
-  },
-  {
-    "bytes": ["FD", "60"],
-    "cycles": "8",
-    "description": "The contents of B are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,B"
-  },
-  {
-    "bytes": ["FD", "61"],
-    "cycles": "8",
-    "description": "The contents of C are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,C"
-  },
-  {
-    "bytes": ["FD", "62"],
-    "cycles": "8",
-    "description": "The contents of D are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,D"
-  },
-  {
-    "bytes": ["FD", "63"],
-    "cycles": "8",
-    "description": "The contents of E are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,E"
-  },
-  {
-    "bytes": ["FD", "64"],
-    "cycles": "8",
-    "description": "The contents of HY are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,HY"
-  },
-  {
-    "bytes": ["FD", "65"],
-    "cycles": "8",
-    "description": "The contents of LY are loaded into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,LY"
-  },
-  {
-    "bytes": ["FD", "26", "n"],
-    "cycles": "11",
-    "description": "Loads $n into HY.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HY,n"
   },
   {
     "bytes": ["ED", "47"],
@@ -1415,6 +1355,134 @@
     "mnemonic": "LD IX,nn"
   },
   {
+    "bytes": ["DD", "67"],
+    "cycles": "8",
+    "description": "The contents of A are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,A",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "60"],
+    "cycles": "8",
+    "description": "The contents of B are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,B",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "61"],
+    "cycles": "8",
+    "description": "The contents of C are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,C",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "62"],
+    "cycles": "8",
+    "description": "The contents of D are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,D",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "63"],
+    "cycles": "8",
+    "description": "The contents of E are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,E",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "64"],
+    "cycles": "8",
+    "description": "The contents of IXH are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,IXH",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "65"],
+    "cycles": "8",
+    "description": "The contents of IXL are loaded into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "26", "n"],
+    "cycles": "11",
+    "description": "Loads $n into IXH.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXH,n",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "6F"],
+    "cycles": "8",
+    "description": "The contents of A are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,A",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "68"],
+    "cycles": "8",
+    "description": "The contents of B are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,B",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "69"],
+    "cycles": "8",
+    "description": "The contents of C are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,C",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "6A"],
+    "cycles": "8",
+    "description": "The contents of D are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,D",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "6B"],
+    "cycles": "8",
+    "description": "The contents of E are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,E",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "6C"],
+    "cycles": "8",
+    "description": "The contents of IXH are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,IXH",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "6D"],
+    "cycles": "8",
+    "description": "The contents of IXL are loaded into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["DD", "2E", "n"],
+    "cycles": "11",
+    "description": "Loads $n into IXL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "LD IXL,n",
+    "undefined": true
+  },
+  {
     "bytes": ["FD", "2A", "nn"],
     "cycles": "20",
     "description": "Loads the value pointed to by $nn into IY.",
@@ -1429,116 +1497,132 @@
     "mnemonic": "LD IY,nn"
   },
   {
-    "bytes": ["DD", "6F"],
+    "bytes": ["FD", "67"],
     "cycles": "8",
-    "description": "The contents of A are loaded into LX.",
+    "description": "The contents of A are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,A"
+    "mnemonic": "LD IYH,A",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "68"],
+    "bytes": ["FD", "60"],
     "cycles": "8",
-    "description": "The contents of B are loaded into LX.",
+    "description": "The contents of B are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,B"
+    "mnemonic": "LD IYH,B",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "69"],
+    "bytes": ["FD", "61"],
     "cycles": "8",
-    "description": "The contents of C are loaded into LX.",
+    "description": "The contents of C are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,C"
+    "mnemonic": "LD IYH,C",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "6A"],
+    "bytes": ["FD", "62"],
     "cycles": "8",
-    "description": "The contents of D are loaded into LX.",
+    "description": "The contents of D are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,D"
+    "mnemonic": "LD IYH,D",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "6B"],
+    "bytes": ["FD", "63"],
     "cycles": "8",
-    "description": "The contents of E are loaded into LX.",
+    "description": "The contents of E are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,E"
+    "mnemonic": "LD IYH,E",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "6C"],
+    "bytes": ["FD", "64"],
     "cycles": "8",
-    "description": "The contents of HX are loaded into LX.",
+    "description": "The contents of IYH are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,HX"
+    "mnemonic": "LD IYH,IYH",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "6D"],
+    "bytes": ["FD", "65"],
     "cycles": "8",
-    "description": "The contents of LX are loaded into LX.",
+    "description": "The contents of IYL are loaded into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,LX"
+    "mnemonic": "LD IYH,IYL",
+    "undefined": true
   },
   {
-    "bytes": ["DD", "2E", "n"],
+    "bytes": ["FD", "26", "n"],
     "cycles": "11",
-    "description": "Loads $n into LX.",
+    "description": "Loads $n into IYH.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LX,n"
+    "mnemonic": "LD IYH,n",
+    "undefined": true
   },
   {
     "bytes": ["FD", "6F"],
     "cycles": "8",
-    "description": "The contents of A are loaded into LY.",
+    "description": "The contents of A are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,A"
+    "mnemonic": "LD IYL,A",
+    "undefined": true
   },
   {
     "bytes": ["FD", "68"],
     "cycles": "8",
-    "description": "The contents of B are loaded into LY.",
+    "description": "The contents of B are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,B"
+    "mnemonic": "LD IYL,B",
+    "undefined": true
   },
   {
     "bytes": ["FD", "69"],
     "cycles": "8",
-    "description": "The contents of C are loaded into LY.",
+    "description": "The contents of C are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,C"
+    "mnemonic": "LD IYL,C",
+    "undefined": true
   },
   {
     "bytes": ["FD", "6A"],
     "cycles": "8",
-    "description": "The contents of D are loaded into LY.",
+    "description": "The contents of D are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,D"
+    "mnemonic": "LD IYL,D",
+    "undefined": true
   },
   {
     "bytes": ["FD", "6B"],
     "cycles": "8",
-    "description": "The contents of E are loaded into LY.",
+    "description": "The contents of E are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,E"
+    "mnemonic": "LD IYL,E",
+    "undefined": true
   },
   {
     "bytes": ["FD", "6C"],
     "cycles": "8",
-    "description": "The contents of HY are loaded into LY.",
+    "description": "The contents of IYH are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,HX"
+    "mnemonic": "LD IYL,IXH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "6D"],
     "cycles": "8",
-    "description": "The contents of LY are loaded into LY.",
+    "description": "The contents of IYL are loaded into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,LX"
+    "mnemonic": "LD IYL,IXL",
+    "undefined": true
   },
   {
     "bytes": ["FD", "2E", "n"],
     "cycles": "11",
-    "description": "Loads $n into LY.",
+    "description": "Loads $n into IYL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD LY,n"
+    "mnemonic": "LD IYL,n",
+    "undefined": true
   },
   {
     "bytes": ["ED", "4F"],
@@ -1550,35 +1634,35 @@
   {
     "bytes": ["ED", "7B", "nn"],
     "cycles": "20",
-    "description": "Loads the value pointed to by $nn into sp.",
+    "description": "Loads the value pointed to by $nn into SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD SP,(nn)"
   },
   {
     "bytes": ["F9"],
     "cycles": "6",
-    "description": "Loads the value of HL into sp.",
+    "description": "Loads the value of HL into SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD SP,HL"
   },
   {
     "bytes": ["DD", "F9"],
     "cycles": "10",
-    "description": "Loads the value of IX into sp.",
+    "description": "Loads the value of IX into SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD SP,IX"
   },
   {
     "bytes": ["FD", "F9"],
     "cycles": "10",
-    "description": "Loads the value of IY into sp.",
+    "description": "Loads the value of IY into SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD SP,IY"
   },
   {
     "bytes": ["31", "nn"],
     "cycles": "10",
-    "description": "Loads $nn into sp.",
+    "description": "Loads $nn into SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD SP,nn"
   },
@@ -1647,31 +1731,35 @@
   },
   {
     "bytes": ["ED", "4C"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "MLT BC"
+    "cycles": "17",
+    "description": "The contents of B and C are multiplied and stored in BC.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "MLT BC",
+    "z180": true
   },
   {
     "bytes": ["ED", "5C"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "MLT DE"
+    "cycles": "17",
+    "description": "The contents of D and E are multiplied and stored in DE.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "MLT DE",
+    "z180": true
   },
   {
     "bytes": ["ED", "6C"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "MLT HL"
+    "cycles": "17",
+    "description": "The contents of H and L are multiplied and stored in HL.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "MLT HL",
+    "z180": true
   },
   {
     "bytes": ["ED", "7C"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "MLT SP"
+    "cycles": "17",
+    "description": "The contents of SPH and SPL are multiplied and stored in SP.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "MLT SP",
+    "z180": true
   },
   {
     "bytes": ["ED", "44"],
@@ -1711,30 +1799,34 @@
   {
     "bytes": ["DD", "B4"],
     "cycles": "8",
-    "description": "Bitwise OR on A with HX.",
+    "description": "Bitwise OR on A with IXH.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "OR HX"
-  },
-  {
-    "bytes": ["FD", "B4"],
-    "cycles": "8",
-    "description": "Bitwise OR on A with HY.",
-    "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "OR HY"
+    "mnemonic": "OR IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "B5"],
     "cycles": "8",
-    "description": "Bitwise OR on A with LX.",
+    "description": "Bitwise OR on A with IXL.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "OR LX"
+    "mnemonic": "OR IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "B4"],
+    "cycles": "8",
+    "description": "Bitwise OR on A with IYH.",
+    "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "OR IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "B5"],
     "cycles": "8",
-    "description": "Bitwise OR on A with LY.",
+    "description": "Bitwise OR on A with IYL.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "OR LY"
+    "mnemonic": "OR IYL",
+    "undefined": true
   },
   {
     "bytes": ["F6", "n"],
@@ -1750,8 +1842,8 @@
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "OR r"
   },
-  { "bytes": ["ED", "8B"], "mnemonic": "OTDM" },
-  { "bytes": ["ED", "9B"], "mnemonic": "OTDMR" },
+  { "bytes": ["ED", "8B"], "mnemonic": "OTDM", "z180": true },
+  { "bytes": ["ED", "9B"], "mnemonic": "OTDMR", "z180": true },
   {
     "bytes": ["ED", "BB"],
     "cycles": "21/16",
@@ -1759,8 +1851,8 @@
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "OTDR"
   },
-  { "bytes": ["ED", "83"], "mnemonic": "OTIM" },
-  { "bytes": ["ED", "93"], "mnemonic": "OTIM" },
+  { "bytes": ["ED", "83"], "mnemonic": "OTIM", "z180": true },
+  { "bytes": ["ED", "93"], "mnemonic": "OTIMR", "z180": true },
   {
     "bytes": ["ED", "B3"],
     "cycles": "21/16",
@@ -1773,7 +1865,8 @@
     "cycles": "12",
     "description": "Outputs a zero to port C.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "OUT (C),0"
+    "mnemonic": "OUT (C),0",
+    "undefined": true
   },
   {
     "bytes": ["ED", "(r<<3)+$41"],
@@ -1788,6 +1881,14 @@
     "description": "The value of A is written to port $n.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "OUT (n),A"
+  },
+  {
+    "bytes": ["ED", "(r<<3)+$01", "n"],
+    "cycles": "13",
+    "description": "The value of $r is written to the port whose address is formed by 00h in the high bits and $n in the low bits.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "OUT0 (n),r",
+    "z180": true
   },
   {
     "bytes": ["ED", "AB"],
@@ -1806,84 +1907,84 @@
   {
     "bytes": ["F1"],
     "cycles": "10",
-    "description": "The memory location pointed to by sp is stored into f and sp is incremented. The memory location pointed to by sp is stored into A and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into f and SP is incremented. The memory location pointed to by SP is stored into A and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP AF"
   },
   {
     "bytes": ["C1"],
     "cycles": "10",
-    "description": "The memory location pointed to by sp is stored into C and sp is incremented. The memory location pointed to by sp is stored into B and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into C and SP is incremented. The memory location pointed to by SP is stored into B and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP BC"
   },
   {
     "bytes": ["D1"],
     "cycles": "10",
-    "description": "The memory location pointed to by sp is stored into E and sp is incremented. The memory location pointed to by sp is stored into D and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into E and SP is incremented. The memory location pointed to by SP is stored into D and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP DE"
   },
   {
     "bytes": ["E1"],
     "cycles": "10",
-    "description": "The memory location pointed to by sp is stored into L and sp is incremented. The memory location pointed to by sp is stored into H and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into L and SP is incremented. The memory location pointed to by SP is stored into H and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP HL"
   },
   {
     "bytes": ["DD", "E1"],
     "cycles": "14",
-    "description": "The memory location pointed to by sp is stored into LX and sp is incremented. The memory location pointed to by sp is stored into HX and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into IXL and SP is incremented. The memory location pointed to by SP is stored into IXH and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP IX"
   },
   {
     "bytes": ["FD", "E1"],
     "cycles": "14",
-    "description": "The memory location pointed to by sp is stored into LY and sp is incremented. The memory location pointed to by sp is stored into HY and sp is incremented again.",
+    "description": "The memory location pointed to by SP is stored into IYL and SP is incremented. The memory location pointed to by SP is stored into IYH and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP IY"
   },
   {
     "bytes": ["F5"],
     "cycles": "11",
-    "description": "sp is decremented and A is stored into the memory location pointed to by sp. sp is decremented again and f is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and A is stored into the memory location pointed to by SP. SP is decremented again and f is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH AF"
   },
   {
     "bytes": ["C5"],
     "cycles": "11",
-    "description": "sp is decremented and B is stored into the memory location pointed to by sp. sp is decremented again and C is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and B is stored into the memory location pointed to by SP. SP is decremented again and C is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH BC"
   },
   {
     "bytes": ["D5"],
     "cycles": "11",
-    "description": "sp is decremented and D is stored into the memory location pointed to by sp. sp is decremented again and E is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and D is stored into the memory location pointed to by SP. SP is decremented again and E is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH DE"
   },
   {
     "bytes": ["E5"],
     "cycles": "11",
-    "description": "sp is decremented and H is stored into the memory location pointed to by sp. sp is decremented again and L is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and H is stored into the memory location pointed to by SP. SP is decremented again and L is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH HL"
   },
   {
     "bytes": ["DD", "E5"],
     "cycles": "15",
-    "description": "sp is decremented and HX is stored into the memory location pointed to by sp. sp is decremented again and LX is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and IXH is stored into the memory location pointed to by SP. SP is decremented again and IXL is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH IX"
   },
   {
     "bytes": ["FD", "E5"],
     "cycles": "15",
-    "description": "sp is decremented and HY is stored into the memory location pointed to by sp. sp is decremented again and LY is stored into the memory location pointed to by sp.",
+    "description": "SP is decremented and IYH is stored into the memory location pointed to by SP. SP is decremented again and IYL is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH IY"
   },
@@ -2025,14 +2126,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are rotated left one bit position. The contents of bit 7 are copied to the carry flag and the previous contents of the carry flag are copied to bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RL r,(IX+d)"
+    "mnemonic": "RL r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$10"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are rotated left one bit position. The contents of bit 7 are copied to the carry flag and the previous contents of the carry flag are copied to bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RL r,(IY+d)"
+    "mnemonic": "RL r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["17"],
@@ -2074,14 +2177,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are rotated left one bit position. The contents of bit 7 are copied to the carry flag and bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RLC r,(IX+d)"
+    "mnemonic": "RLC r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are rotated left one bit position. The contents of bit 7 are copied to the carry flag and bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RLC r,(IY+d)"
+    "mnemonic": "RLC r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["07"],
@@ -2130,14 +2235,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are rotated right one bit position. The contents of bit 0 are copied to the carry flag and the previous contents of the carry flag are copied to bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RR r,(IX+d)"
+    "mnemonic": "RR r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$18"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are rotated right one bit position. The contents of bit 0 are copied to the carry flag and the previous contents of the carry flag are copied to bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RR r,(IY+d)"
+    "mnemonic": "RR r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["1F"],
@@ -2179,14 +2286,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are rotated right one bit position. The contents of bit 0 are copied to the carry flag and bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RRC r,(IX+d)"
+    "mnemonic": "RRC r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$08"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are rotated right one bit position. The contents of bit 0 are copied to the carry flag and bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "RRC r,(IY+d)"
+    "mnemonic": "RRC r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["0F"],
@@ -2233,30 +2342,34 @@
   {
     "bytes": ["DD", "9C"],
     "cycles": "8",
-    "description": "Subtracts HX and the carry flag from A.",
+    "description": "Subtracts IXH and the carry flag from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC A,HX"
-  },
-  {
-    "bytes": ["FD", "9C"],
-    "cycles": "8",
-    "description": "Subtracts HY and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC A,HY"
+    "mnemonic": "SBC A,IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "9D"],
     "cycles": "8",
-    "description": "Subtracts LX and the carry flag from A.",
+    "description": "Subtracts IXL and the carry flag from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC A,LX"
+    "mnemonic": "SBC A,IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "9C"],
+    "cycles": "8",
+    "description": "Subtracts IYH and the carry flag from A.",
+    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "SBC A,IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "9D"],
     "cycles": "8",
-    "description": "Subtracts LY and the carry flag from A.",
+    "description": "Subtracts IYL and the carry flag from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC A,LY"
+    "mnemonic": "SBC A,IYL",
+    "undefined": true
   },
   {
     "bytes": ["DE", "n"],
@@ -2296,7 +2409,7 @@
   {
     "bytes": ["ED", "72"],
     "cycles": "15",
-    "description": "Subtracts sp and the carry flag from HL.",
+    "description": "Subtracts SP and the carry flag from HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC HL,SP"
   },
@@ -2368,56 +2481,72 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are shifted left one bit position. The contents of bit 7 are copied to the carry flag and a zero is put into bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLA r,(IX+d)"
+    "mnemonic": "SLA r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$20"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are shifted left one bit position. The contents of bit 7 are copied to the carry flag and a zero is put into bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLA r,(IY+d)"
+    "mnemonic": "SLA r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["CB", "36"],
     "cycles": "15",
     "description": "The contents of (HL) are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL (HL)"
+    "mnemonic": "SLL (HL)",
+    "undefined": true
   },
   {
     "bytes": ["DD", "CB", "d", "36"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL (IX+d)"
+    "mnemonic": "SLL (IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "36"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL (IY+d)"
+    "mnemonic": "SLL (IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["CB", "r+$30"],
     "cycles": "8",
     "description": "The contents of $r are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL r"
+    "mnemonic": "SLL r",
+    "undefined": true
   },
   {
     "bytes": ["DD", "CB", "d", "r+$30"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL r,(IX+d)"
+    "mnemonic": "SLL r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$30"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are shifted left one bit position. The contents of bit 7 are put into the carry flag and a one is put into bit 0. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SLL r,(IY+d)"
+    "mnemonic": "SLL r,(IY+d)",
+    "undefined": true
+  },
+  {
+    "bytes": ["ED", "76"],
+    "cycles": "8",
+    "description": "The CPU enters SLEEP mode.",
+    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
+    "mnemonic": "SLP",
+    "z180": true
   },
   {
     "bytes": ["CB", "2E"],
@@ -2452,14 +2581,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are shifted right one bit position. The contents of bit 0 are copied to the carry flag and the previous contents of bit 7 are unchanged. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SRA r,(IX+d)"
+    "mnemonic": "SRA r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$28"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are shifted right one bit position. The contents of bit 0 are copied to the carry flag and the previous contents of bit 7 are unchanged. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SRA r,(IY+d)"
+    "mnemonic": "SRA r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["CB", "3E"],
@@ -2494,14 +2625,16 @@
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IX plus $d are shifted right one bit position. The contents of bit 0 are copied to the carry flag and a zero is put into bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SRL r,(IX+d)"
+    "mnemonic": "SRL r,(IX+d)",
+    "undefined": true
   },
   {
     "bytes": ["FD", "CB", "d", "r+$38"],
     "cycles": "23",
     "description": "The contents of the memory location pointed to by IY plus $d are shifted right one bit position. The contents of bit 0 are copied to the carry flag and a zero is put into bit 7. The result is then stored in $r.",
     "flags": { "c": "+", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "SRL r,(IY+d)"
+    "mnemonic": "SRL r,(IY+d)",
+    "undefined": true
   },
   {
     "bytes": ["96"],
@@ -2527,30 +2660,34 @@
   {
     "bytes": ["DD", "94"],
     "cycles": "8",
-    "description": "Subtracts HX from A.",
+    "description": "Subtracts IXH from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SUB HX"
-  },
-  {
-    "bytes": ["FD", "94"],
-    "cycles": "8",
-    "description": "Subtracts HY from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SUB HY"
+    "mnemonic": "SUB IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "95"],
     "cycles": "8",
-    "description": "Subtracts LX from A.",
+    "description": "Subtracts IXL from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SUB LX"
+    "mnemonic": "SUB IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "94"],
+    "cycles": "8",
+    "description": "Subtracts IYH from A.",
+    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "mnemonic": "SUB IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "95"],
     "cycles": "8",
-    "description": "Subtracts LY from A.",
+    "description": "Subtracts IYL from A.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SUB LY"
+    "mnemonic": "SUB IYL",
+    "undefined": true
   },
   {
     "bytes": ["D6", "n"],
@@ -2566,22 +2703,10 @@
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB r"
   },
-  { "bytes": ["ED", "34"], "mnemonic": "TST (HL)" },
-  {
-    "bytes": ["ED", "64", "n"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "TST n"
-  },
-  { "bytes": ["ED", "(r<<3)+$04"], "mnemonic": "TST r" },
-  {
-    "bytes": ["ED", "74", "n"],
-    "cycles": "8",
-    "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "TSTIO n"
-  },
+  { "bytes": ["ED", "34"], "mnemonic": "TST (HL)", "z180": true },
+  { "bytes": ["ED", "64", "n"], "mnemonic": "TST n", "z180": true },
+  { "bytes": ["ED", "(r<<3)+$04"], "mnemonic": "TST r", "z180": true },
+  { "bytes": ["ED", "74", "n"], "mnemonic": "TSTIO n", "z180": true },
   {
     "bytes": ["AE"],
     "cycles": "7",
@@ -2606,30 +2731,34 @@
   {
     "bytes": ["DD", "AC"],
     "cycles": "8",
-    "description": "Bitwise XOR on A with HX.",
+    "description": "Bitwise XOR on A with IXH.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "XOR HX"
-  },
-  {
-    "bytes": ["FD", "AC"],
-    "cycles": "8",
-    "description": "Bitwise XOR on A with HY.",
-    "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "XOR HY"
+    "mnemonic": "XOR IXH",
+    "undefined": true
   },
   {
     "bytes": ["DD", "AD"],
     "cycles": "8",
-    "description": "Bitwise XOR on A with LX.",
+    "description": "Bitwise XOR on A with IXL.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "XOR LX"
+    "mnemonic": "XOR IXL",
+    "undefined": true
+  },
+  {
+    "bytes": ["FD", "AC"],
+    "cycles": "8",
+    "description": "Bitwise XOR on A with IYH.",
+    "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
+    "mnemonic": "XOR IYH",
+    "undefined": true
   },
   {
     "bytes": ["FD", "AD"],
     "cycles": "8",
-    "description": "Bitwise XOR on A with LY.",
+    "description": "Bitwise XOR on A with IYL.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
-    "mnemonic": "XOR LY"
+    "mnemonic": "XOR IYL",
+    "undefined": true
   },
   {
     "bytes": ["EE", "n"],

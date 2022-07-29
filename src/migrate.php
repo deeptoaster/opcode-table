@@ -51,15 +51,21 @@ for ($table_index = 0; $table_index < $tables->length; $table_index++) {
       if ($cells[$cell_index]->hasAttribute('axis')) {
         foreach ($table_json as &$opcode_json) {
           if (implodeBytes($opcode_json->bytes) === $opcode) {
+            $axis = explode('|', $cells[$cell_index]->getAttribute('axis'));
+
             if (!property_exists($opcode_json, 'cycles')) {
-              $axis = explode('|', $cells[$cell_index]->getAttribute('axis'));
               $opcode_json->cycles = $axis[2];
+            }
+
+            if (!property_exists($opcode_json, 'description')) {
               $opcode_json->description = preg_replace(
                 array('/bit 0/', '/\bb\b/'),
                 array('bit <var>b</var>', '<var>r</var>'),
                 $axis[3]
               );
+            }
 
+            if (!property_exists($opcode_json, 'flags')) {
               $opcode_json->flags = [
                 'c' => $axis[0][0],
                 'h' => $axis[0][3],
@@ -68,12 +74,15 @@ for ($table_index = 0; $table_index < $tables->length; $table_index++) {
                 's' => $axis[0][5],
                 'z' => $axis[0][4]
               ];
-
-              $opcode_array = (array)$opcode_json;
-              ksort($opcode_array);
-              $opcode_json = (object)$opcode_array;
             }
 
+            if ($cells[$cell_index]->getAttribute('class') === 'un') {
+              $opcode_json->undefined = true;
+            }
+
+            $opcode_array = (array)$opcode_json;
+            ksort($opcode_array);
+            $opcode_json = (object)$opcode_array;
             break;
           }
         }
