@@ -7,12 +7,82 @@ define('ClrHome\ITERATED_PARAMETERS', ['b', 'p', 'r', 'r1', 'r2']);
 include(__DIR__ . '/../lib/tools/SimpleNumber.class.php');
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
 
+class OpcodeFlags {
+  public string $c;
+  public string $h;
+  public string $n;
+  public string $pv;
+  public string $s;
+  public string $z;
+
+  public function __construct(object $json_flags) {
+    foreach ($json_flags as $name => $behavior) {
+      $property = str_replace('/', '', $name);
+
+      if (!property_exists(self::class, $property)) {
+        throw new \DomainException("Unrecognized flag name $name");
+      }
+
+      $this->$property = self::formatFlag($behavior);
+    }
+  }
+
+  private static function formatFlag(string $behavior) {
+    switch ($behavior) {
+      case ' ':
+        return 'undefined';
+      case '*':
+        return 'exceptional';
+      case '+':
+        return 'as defined';
+      case '-':
+        return 'unaffected';
+      case '0':
+        return 'reset';
+      case '1':
+        return 'set';
+      case 'p':
+        return 'detects parity';
+      case 'v':
+        return 'detects overflow';
+      default:
+        throw new \RangeException("Unrecognized flag behavior $behavior");
+    }
+  }
+}
+
 class Opcode {
-  public string $bytes = '';
-  public string $cycles = '';
-  public string $description = '';
-  public string $mnemonic = '';
-  public int $space = 0;
+  public array $bytes;
+  public string $class;
+  public string $cycles;
+  public string $description;
+  public OpcodeFlags $flags;
+  public string $mnemonic;
+  public int $space;
+
+  public function __clone() {
+    $this->bytes = $this->bytes;
+  }
+
+  public function __construct(object $json_opcode) {
+    $this->bytes = $json_opcode->bytes;
+
+    $this->class = implode(' ', array_filter([
+      property_exists($json_opcode, 'undefined')
+        ? $json_opcode->undefined ? 'undefined' : ''
+        : '',
+      property_exists($json_opcode, 'z180')
+        ? $json_opcode->z180 ? 'z180' : ''
+        : ''
+    ]));
+
+    $this->cycles = $json_opcode->cycles;
+    $this->description = $json_opcode->description;
+    $this->flags = new OpcodeFlags($json_opcode->flags);
+    $this->mnemonic = $json_opcode->mnemonic;
+    $this->space = count($json_opcode->bytes) +
+        count(preg_grep('/^[a-z][a-z]$/', $json_opcode->bytes));
+  }
 }
 
 class OpcodeRow {
@@ -30,28 +100,13 @@ class OpcodeTable {
 
     foreach ($json_opcodes as $json_opcode) {
       $opcodes = self::listOpcodesFromShorthand(
-        $json_opcode->bytes,
+        new Opcode($json_opcode),
         0,
-        implode(' ', array_filter([
-          property_exists($json_opcode, 'undefined')
-            ? $json_opcode->undefined ? 'undefined' : ''
-            : '',
-          property_exists($json_opcode, 'z180')
-            ? $json_opcode->z180 ? 'z180' : ''
-            : ''
-        ])),
-        property_exists($json_opcode, 'cycles')
-          ? $json_opcode->cycles
-          : 'unknown',
-        property_exists($json_opcode, 'description')
-          ? $json_opcode->description
-          : '',
-        $json_opcode->mnemonic,
         []
       );
 
       foreach ($opcodes as $opcode) {
-        $bytes = preg_grep('/^[\dA-F][\dA-F]$/', explode(' ', $opcode->bytes));
+        $bytes = preg_grep('/^[\dA-F][\dA-F]$/', $opcode->bytes);
         $final_byte = array_pop($bytes);
         $table_prefix = implode('', $bytes);
         list($row_index, $column_index) = str_split($final_byte);
@@ -106,169 +161,140 @@ class OpcodeTable {
   }
 
   private static function listOpcodesFromShorthand(
-    array $bytes,
+    Opcode $opcode,
     int $byte_index,
-    string $class,
-    string $cycles,
-    string $description,
-    string $mnemonic,
     array $substitutions
   ): array {
-    if ($byte_index === count($bytes)) {
-      $opcode = new Opcode();
-      $opcode->bytes = self::applyArgumentStyling(implode(' ', $bytes));
-      $opcode->class = $class;
-      $opcode->cycles = $cycles;
+    if ($byte_index === count($opcode->bytes)) {
+      $opcode_copy = clone $opcode;
+      $opcode_copy->bytes =
+          array_map([self::class, 'applyArgumentStyling'], $opcode->bytes);
 
-      $opcode->description = preg_replace_callback(
+      $opcode_copy->description = preg_replace_callback(
         '/\$(\w+)/',
-        function($matches) use ($mnemonic, $substitutions) {
+        function($matches) use ($substitutions) {
           return in_array($matches[1], ITERATED_PARAMETERS)
             ? $matches[1][0] === 'r'
               ? REGISTER_NAMES[$substitutions[$matches[1]]]
               : $substitutions[$matches[1]]
             : "<var>$matches[1]</var>";
         },
-        $description
+        $opcode->description
       );
 
-      $opcode->mnemonic = strtolower(self::applyArgumentStyling($mnemonic));
-      $opcode->space =
-          $byte_index + count(preg_grep('/^[a-z][a-z]$/', $bytes));
-      return [$opcode];
+      $opcode_copy->mnemonic =
+          strtolower(self::applyArgumentStyling($opcode->mnemonic));
+      return [$opcode_copy];
     } else if (
       !array_key_exists('b', $substitutions) &&
-          strpos($bytes[$byte_index], 'b') !== false
+          strpos($opcode->bytes[$byte_index], 'b') !== false
     ) {
       return array_merge(...array_map(function(int $bit) use (
         $byte_index,
-        $bytes,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
+        $opcode,
         $substitutions
       ): array {
+        $opcode_copy = clone $opcode;
+        $opcode_copy->mnemonic = str_replace('b', $bit, $opcode->mnemonic);
+
         return self::listOpcodesFromShorthand(
-          $bytes,
+          $opcode_copy,
           $byte_index,
-          $class,
-          $cycles,
-          $description,
-          str_replace('b', $bit, $mnemonic),
           array_merge($substitutions, ['b' => $bit])
         );
       }, range(0, 7)));
     } else if (
       !array_key_exists('p', $substitutions) &&
-          strpos($bytes[$byte_index], 'p') !== false
+          strpos($opcode->bytes[$byte_index], 'p') !== false
     ) {
       return array_merge(...array_map(function(int $byte) use (
         $byte_index,
-        $bytes,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
+        $opcode,
         $substitutions
       ): array {
+        $opcode_copy = clone $opcode;
+        $opcode_copy->mnemonic =
+            str_replace('p', self::formatHex($byte) . 'H', $opcode->mnemonic);
+
         return self::listOpcodesFromShorthand(
-          $bytes,
+          $opcode_copy,
           $byte_index,
-          $class,
-          $cycles,
-          $description,
-          str_replace('p', self::formatHex($byte) . 'H', $mnemonic),
           array_merge($substitutions, ['p' => $byte])
         );
       }, range(0x00, 0x38, 0x08)));
     } else if (
       !array_key_exists('r1', $substitutions) &&
-          strpos($bytes[$byte_index], 'r1') !== false
+          strpos($opcode->bytes[$byte_index], 'r1') !== false
     ) {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
-        $bytes,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
+        $opcode,
         $substitutions
       ): array {
+        $opcode_copy = clone $opcode;
+        $opcode_copy->mnemonic =
+            str_replace('r1', REGISTER_NAMES[$register], $opcode->mnemonic);
+
         return self::listOpcodesFromShorthand(
-          $bytes,
+          $opcode_copy,
           $byte_index,
-          $class,
-          $cycles,
-          $description,
-          str_replace('r1', REGISTER_NAMES[$register], $mnemonic),
           array_merge($substitutions, ['r1' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else if (
       !array_key_exists('r2', $substitutions) &&
-          strpos($bytes[$byte_index], 'r2') !== false
+          strpos($opcode->bytes[$byte_index], 'r2') !== false
     ) {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
-        $bytes,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
+        $opcode,
         $substitutions
       ): array {
+        $opcode_copy = clone $opcode;
+        $opcode_copy->mnemonic =
+            str_replace('r2', REGISTER_NAMES[$register], $opcode->mnemonic);
+
         return self::listOpcodesFromShorthand(
-          $bytes,
+          $opcode_copy,
           $byte_index,
-          $class,
-          $cycles,
-          $description,
-          str_replace('r2', REGISTER_NAMES[$register], $mnemonic),
           array_merge($substitutions, ['r2' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else if (
       !array_key_exists('r', $substitutions) &&
-          strpos($bytes[$byte_index], 'r') !== false
+          strpos($opcode->bytes[$byte_index], 'r') !== false
     ) {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
-        $bytes,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
+        $opcode,
         $substitutions
       ): array {
+        $opcode_copy = clone $opcode;
+        $opcode_copy->mnemonic =
+            str_replace('r', REGISTER_NAMES[$register], $opcode->mnemonic);
+
         return self::listOpcodesFromShorthand(
-          $bytes,
+          $opcode_copy,
           $byte_index,
-          $class,
-          $cycles,
-          $description,
-          str_replace('r', REGISTER_NAMES[$register], $mnemonic),
           array_merge($substitutions, ['r' => $register])
         );
       }, array_diff(range(0, 7), [6])));
     } else {
+      $opcode_copy = clone $opcode;
+
       if (preg_match(
         '/' . implode('|', ITERATED_PARAMETERS) . '/',
-        $bytes[$byte_index]
+        $opcode->bytes[$byte_index]
       )) {
-        $bytes[$byte_index] = self::formatHex(SimpleNumber::from(
-          $bytes[$byte_index],
+        $opcode_copy->bytes[$byte_index] = self::formatHex(SimpleNumber::from(
+          $opcode->bytes[$byte_index],
           $substitutions
         )->real);
       }
 
       return self::listOpcodesFromShorthand(
-        $bytes,
+        $opcode_copy,
         $byte_index + 1,
-        $class,
-        $cycles,
-        $description,
-        $mnemonic,
         $substitutions
       );
     }

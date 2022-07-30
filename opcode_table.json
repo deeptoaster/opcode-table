@@ -1852,6 +1852,7 @@
   },
   {
     "bytes": ["ED", "9B"],
+    "cycles": "16/14",
     "description": "A byte from the memory location pointed to by HL is written to port C. Then HL, B, and C are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
     "mnemonic": "OTDMR",
@@ -1874,6 +1875,7 @@
   },
   {
     "bytes": ["ED", "93"],
+    "cycles": "16/14",
     "description": "A byte from the memory location pointed to by HL is written to port C. Then HL and C are incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
     "mnemonic": "OTIMR",
