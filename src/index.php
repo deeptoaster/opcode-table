@@ -1,11 +1,22 @@
 <?php
 namespace ClrHome;
 
-define('ClrHome\REGISTER_NAMES', ['B', 'C', 'D', 'E', 'H', 'L', null, 'A']);
+define('ClrHome\REGISTER_NAMES', [
+  '' => ['B', 'C', 'D', 'E', 'H', 'L', null, 'A'],
+  'ix' => ['B', 'C', 'D', 'E', 'IXH', 'IXL', null, 'A'],
+  'iy' => ['B', 'C', 'D', 'E', 'IYH', 'IYL', null, 'A']
+]);
+
 define('ClrHome\ITERATED_PARAMETERS', ['b', 'p', 'r', 'r1', 'r2']);
 
 include(__DIR__ . '/../lib/tools/SimpleNumber.class.php');
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
+
+abstract class OpcodeCategory extends Enum {
+  const DEFAULT = '';
+  const IX = 'ix';
+  const IY = 'iy';
+}
 
 class OpcodeFlags {
   public string $c;
@@ -53,6 +64,7 @@ class OpcodeFlags {
 
 class Opcode {
   public array $bytes;
+  public string $category;
   public string $class;
   public string $cycles;
   public string $description;
@@ -66,10 +78,13 @@ class Opcode {
 
   public function __construct(object $json_opcode) {
     $this->bytes = $json_opcode->bytes;
+    $this->category = property_exists($json_opcode, 'category')
+      ? $json_opcode->category
+      : '';
 
     $this->class = implode(' ', array_filter([
-      property_exists($json_opcode, 'undefined')
-        ? $json_opcode->undefined ? 'undefined' : ''
+      property_exists($json_opcode, 'undocumented')
+        ? $json_opcode->undocumented ? 'undocumented' : ''
         : '',
       property_exists($json_opcode, 'z180')
         ? $json_opcode->z180 ? 'z180' : ''
@@ -165,6 +180,8 @@ class OpcodeTable {
     int $byte_index,
     array $substitutions
   ): array {
+    $register_names = REGISTER_NAMES[$opcode->category];
+
     if ($byte_index === count($opcode->bytes)) {
       $opcode_copy = clone $opcode;
       $opcode_copy->bytes =
@@ -172,10 +189,10 @@ class OpcodeTable {
 
       $opcode_copy->description = preg_replace_callback(
         '/\$(\w+)/',
-        function($matches) use ($substitutions) {
+        function($matches) use ($register_names, $substitutions) {
           return in_array($matches[1], ITERATED_PARAMETERS)
             ? $matches[1][0] === 'r'
-              ? REGISTER_NAMES[$substitutions[$matches[1]]]
+              ? $register_names[$substitutions[$matches[1]]]
               : $substitutions[$matches[1]]
             : "<var>$matches[1]</var>";
         },
@@ -229,11 +246,12 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
+        $register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
         $opcode_copy->mnemonic =
-            str_replace('r1', REGISTER_NAMES[$register], $opcode->mnemonic);
+            str_replace('r1', $register_names[$register], $opcode->mnemonic);
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,
@@ -248,11 +266,12 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
+        $register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
         $opcode_copy->mnemonic =
-            str_replace('r2', REGISTER_NAMES[$register], $opcode->mnemonic);
+            str_replace('r2', $register_names[$register], $opcode->mnemonic);
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,
@@ -267,11 +286,12 @@ class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
+        $register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
         $opcode_copy->mnemonic =
-            str_replace('r', REGISTER_NAMES[$register], $opcode->mnemonic);
+            str_replace('r', $register_names[$register], $opcode->mnemonic);
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,

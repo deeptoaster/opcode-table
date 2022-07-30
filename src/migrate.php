@@ -76,8 +76,10 @@ for ($table_index = 0; $table_index < $tables->length; $table_index++) {
               ];
             }
 
-            if ($cells[$cell_index]->getAttribute('class') === 'un') {
-              $opcode_json->undefined = true;
+            if ($cells[$cell_index]->getAttribute('class') === 'un' && (
+              !property_exists($opcode_json, 'z180') || !$opcode_json->z180
+            )) {
+              $opcode_json->undocumented = true;
             }
 
             $opcode_array = (array)$opcode_json;

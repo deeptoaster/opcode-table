@@ -41,7 +41,7 @@ td {
   font-family: monospace;
   font-weight: bold;
 }
-td.undefined {
+td.undocumented {
   background-color: #ddb6be;
   color: #761429;
 }
