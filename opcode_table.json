@@ -1156,14 +1156,14 @@
   {
     "bytes": ["ED", "57"],
     "cycles": "9",
-    "description": "Stores the value of register i or r into A.",
+    "description": "Stores the value of register I into A.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "LD A,I"
   },
   {
     "bytes": ["ED", "5F"],
     "cycles": "9",
-    "description": "Stores the value of register i or r into A.",
+    "description": "Stores the value of register R into A.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "LD A,R"
   },
@@ -1220,7 +1220,7 @@
   {
     "bytes": ["ED", "47"],
     "cycles": "9",
-    "description": "Stores the value of A into register i or r.",
+    "description": "Stores the value of A into register I.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD I,A"
   },
@@ -1255,7 +1255,7 @@
   {
     "bytes": ["ED", "4F"],
     "cycles": "9",
-    "description": "Stores the value of A into register i or r.",
+    "description": "Stores the value of A into register R.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD R,A"
   },

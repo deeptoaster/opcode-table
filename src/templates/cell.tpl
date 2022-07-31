@@ -1,4 +1,4 @@
-<td{if $cell}{if $cell.class} class="{$cell.class}"{/if}{/if}>{if $cell}
+<td{if $cell.class} class="{$cell.class}"{/if}>{if $cell.mnemonic}
   {$cell.mnemonic}
   <dl>
     <dt>Opcode</dt>
@@ -21,4 +21,6 @@
     <dd>{$cell.flags.s}</dd>
     <dd>{$cell.description}</dd>
   </dl>
+{/if}{if $cell.tableId}
+  <a href="#{$cell.tableId}">{$cell.tableName}</a>
 {/if}</td>

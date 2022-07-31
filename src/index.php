@@ -9,6 +9,16 @@ define('ClrHome\REGISTER_NAMES', [
 
 define('ClrHome\ITERATED_PARAMETERS', ['b', 'p', 'r', 'r1', 'r2']);
 
+define('ClrHome\TABLE_NAMES', [
+  '' => 'Main',
+  'CB' => 'Bit',
+  'DD' => 'IX',
+  'DDCB' => 'IX Bit',
+  'ED' => 'Misc.',
+  'FD' => 'IY',
+  'FDCB' => 'IY Bit'
+]);
+
 include(__DIR__ . '/../lib/tools/SimpleNumber.class.php');
 include(__DIR__ . '/../lib/cleverly/Cleverly.class.php');
 
@@ -26,8 +36,8 @@ class OpcodeFlags {
   public string $s;
   public string $z;
 
-  public function __construct(object $json_flags) {
-    foreach ($json_flags as $name => $behavior) {
+  public function __construct(object $flags_json) {
+    foreach ($flags_json as $name => $behavior) {
       $property = str_replace('/', '', $name);
 
       if (!property_exists(self::class, $property)) {
@@ -76,28 +86,35 @@ class Opcode {
     $this->bytes = $this->bytes;
   }
 
-  public function __construct(object $json_opcode) {
-    $this->bytes = $json_opcode->bytes;
-    $this->category = property_exists($json_opcode, 'category')
-      ? $json_opcode->category
+  public function __construct(object $opcode_json) {
+    $this->bytes = $opcode_json->bytes;
+    $this->category = property_exists($opcode_json, 'category')
+      ? $opcode_json->category
       : '';
 
     $this->class = implode(' ', array_filter([
-      property_exists($json_opcode, 'undocumented')
-        ? $json_opcode->undocumented ? 'undocumented' : ''
+      property_exists($opcode_json, 'undocumented')
+        ? $opcode_json->undocumented ? 'undocumented' : ''
         : '',
-      property_exists($json_opcode, 'z180')
-        ? $json_opcode->z180 ? 'z180' : ''
+      property_exists($opcode_json, 'z180')
+        ? $opcode_json->z180 ? 'z180' : ''
         : ''
     ]));
 
-    $this->cycles = $json_opcode->cycles;
-    $this->description = $json_opcode->description;
-    $this->flags = new OpcodeFlags($json_opcode->flags);
-    $this->mnemonic = $json_opcode->mnemonic;
-    $this->space = count($json_opcode->bytes) +
-        count(preg_grep('/^[a-z][a-z]$/', $json_opcode->bytes));
+    $this->cycles = $opcode_json->cycles;
+    $this->description = $opcode_json->description;
+    $this->flags = new OpcodeFlags($opcode_json->flags);
+    $this->mnemonic = $opcode_json->mnemonic;
+    $this->space = count($opcode_json->bytes) +
+        count(preg_grep('/^[a-z][a-z]$/', $opcode_json->bytes));
   }
+}
+
+class OpcodeLink extends Immutable {
+  public function __construct(
+    protected string $tableId,
+    protected string $tableName
+  ) {}
 }
 
 class OpcodeRow {
@@ -106,57 +123,43 @@ class OpcodeRow {
 }
 
 class OpcodeTable {
+  public string $id;
+  public string $name;
   public string $prefix;
   public array $rows;
 
   final public static function fromFile(string $file_name): array {
     $tables = [];
-    $json_opcodes = json_decode(file_get_contents($file_name));
+    $opcode_jsons = json_decode(file_get_contents($file_name));
 
-    foreach ($json_opcodes as $json_opcode) {
+    foreach ($opcode_jsons as $opcode_json) {
       $opcodes = self::listOpcodesFromShorthand(
-        new Opcode($json_opcode),
+        new Opcode($opcode_json),
         0,
         []
       );
 
       foreach ($opcodes as $opcode) {
-        $bytes = preg_grep('/^[\dA-F][\dA-F]$/', $opcode->bytes);
-        $final_byte = array_pop($bytes);
-        $table_prefix = implode('', $bytes);
-        list($row_index, $column_index) = str_split($final_byte);
+        self::setElement(
+          $tables,
+          preg_grep('/^[\dA-F][\dA-F]$/', $opcode->bytes),
+          $opcode
+        );
+      }
 
-        if (!array_key_exists($table_prefix, $tables)) {
-          $table = new OpcodeTable();
-          $table->prefix = $table_prefix;
-          $table->rows = [];
-          $tables[$table_prefix] = &$table;
-        } else {
-          $table = &$tables[$table_prefix];
+      foreach (TABLE_NAMES as $prefix => $name) {
+        if ($prefix !== '') {
+          self::setElement(
+            $tables,
+            str_split($prefix, 2),
+            new OpcodeLink(strtolower($prefix), $name)
+          );
         }
-
-        if (!array_key_exists($row_index, $table->rows)) {
-          $row = new OpcodeRow();
-          $row->cells = [];
-          $row->prefix = $row_index;
-          $table->rows[$row_index] = &$row;
-
-          for ($index = 0; $index < 16; $index++) {
-            $row->cells[strtoupper(dechex($index))] = null;
-          }
-        } else {
-          $row = &$table->rows[$row_index];
-        }
-
-        $row->cells[$column_index] = $opcode;
-
-        unset($table);
-        unset($row);
       }
     }
 
-    foreach ($tables as &$table) {
-      foreach ($table->rows as &$row) {
+    foreach ($tables as $table) {
+      foreach ($table->rows as $row) {
         ksort($row->cells, SORT_STRING);
       }
 
@@ -173,6 +176,42 @@ class OpcodeTable {
 
   private static function formatHex(int $number) {
     return str_pad(strtoupper(dechex($number)), 2, '0', STR_PAD_LEFT);
+  }
+
+  private static function setElement(
+    array &$tables,
+    array $bytes,
+    object $element
+  ) {
+    $final_byte = array_pop($bytes);
+    $table_prefix = implode('', $bytes);
+    list($row_index, $column_index) = str_split($final_byte);
+
+    if (!array_key_exists($table_prefix, $tables)) {
+      $table = new OpcodeTable();
+      $table->id = strtolower($table_prefix);
+      $table->name = TABLE_NAMES[$table_prefix];
+      $table->prefix = $table_prefix;
+      $table->rows = [];
+      $tables[$table_prefix] = $table;
+    } else {
+      $table = $tables[$table_prefix];
+    }
+
+    if (!array_key_exists($row_index, $table->rows)) {
+      $row = new OpcodeRow();
+      $row->cells = [];
+      $row->prefix = $row_index;
+      $table->rows[$row_index] = $row;
+
+      for ($index = 0; $index < 16; $index++) {
+        $row->cells[strtoupper(dechex($index))] = null;
+      }
+    } else {
+      $row = $table->rows[$row_index];
+    }
+
+    $row->cells[$column_index] = $element;
   }
 
   private static function listOpcodesFromShorthand(
