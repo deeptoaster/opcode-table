@@ -1,3 +1,7 @@
+html {
+  margin: 0;
+  scroll-behavior: smooth;
+}
 body,
 span,
 dl,
@@ -5,13 +9,99 @@ td a {
   font-family: serif;
 }
 body {
-  margin-bottom: 16em;
+  margin: 0 0 20em 0;
   background-color: #d2d7d9;
   font-size: 16px;
 }
-h1 {
-  margin-top: 2em;
+header {
+  padding: 4em 2em;
+  background-color: #161819;
+  color: #617078;
+  text-align: right;
+}
+h1,
+p {
+  width: 85.375em;
+  margin: 1em auto;
+  font-size: 1em;
+}
+h1 a,
+img {
+  width: 18em;
+}
+h1 a {
+  position: relative;
+  float: left;
+  opacity: 0.1;
+  transition: opacity 200ms;
+}
+h1 a:hover {
+  opacity: 0.2;
+}
+span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: transparent;
+  font-size: 0.9765625em;
+  font-family: sans-serif;
+  transition: color 200ms;
+}
+h1 a:hover span {
+  color: #fff;
+}
+p a {
+  color: #a6b8c1;
+  text-decoration: none;
+}
+p a:hover {
+  text-decoration: underline;
+}
+ul {
+  margin: 4em 0 2em 0;
+  padding: 0;
   text-align: center;
+  font-size: 1.25em;
+}
+li {
+  display: inline-block;
+  margin-right: 2em;
+}
+li::before,
+td {
+  background-color: #a6b8c1;
+}
+li::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 1em;
+  border: 0.1em solid #232627;
+  vertical-align: -0.2em;
+}
+li.link::before,
+td a {
+  border-color: #a6b8c1;
+  background-color: #467286;
+  color: #d2d7d9;
+}
+li.undocumented::before,
+td.undocumented {
+  border-color: #6a2635;
+  background-color: #c08c98;
+  color: #6a2635;
+}
+li.z180::before,
+td.z180 {
+  border-color: #5d2e77;
+  background-color: #b8a6c2;
+  color: #5d2e77;
+}
+h2 {
+  margin: 2em 0 1em 0;
+  text-align: center;
+  font-size: 2em;
 }
 table {
   table-layout: fixed;
@@ -36,20 +126,11 @@ th {
 }
 td {
   position: relative;
-  background-color: #a6b8c1;
   color: #232627;
   word-break: break-all;
   overflow-wrap: anywhere;
   font-family: monospace;
   font-weight: bold;
-}
-td.undocumented {
-  background-color: #c08c98;
-  color: #6a2635;
-}
-td.z180 {
-  background-color: #b8a6c2;
-  color: #5d2e77;
 }
 tr:first-child th,
 td {
@@ -154,8 +235,6 @@ td a {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #467286;
-  color: #d2d7d9;
   text-align: center;
   text-decoration: none;
   line-height: 4em;

@@ -1,4 +1,4 @@
-<h1 id="{$table.id}">{$table.name} Instructions {if $table.prefix}({$table.prefix}){/if}</h1>
+<h2 id="{$table.id}">{$table.name} Instructions {if $table.prefix}({$table.prefix}){/if}</h1>
 <table>
   <tr>
     <td>
