@@ -28,6 +28,8 @@ p {
 h1 a,
 img {
   width: 18em;
+  border: none;
+  outline: none;
 }
 h1 a {
   position: relative;
@@ -133,9 +135,10 @@ td {
   font-weight: bold;
 }
 tr:first-child th,
-td {
+tr + tr td {
   width: 4em;
   max-width: 4em;
+  min-width: 4em;
 }
 tr:first-child th,
 tr:first-child td {
@@ -149,10 +152,10 @@ th::after,
 tr + tr td::before {
   content: "";
   display: none;
-  position: absolute;
   opacity: 0.2;
 }
 th::after {
+  position: absolute;
   right: 0.1875em;
   left: 2.1875em;
   z-index: 1;
@@ -176,16 +179,18 @@ td:hover::before {
 th::after:hover {
   display: none;
 }
-td::before {
+td::before,
+td a {
+  position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
+  height: 4em;
 }
 dl {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 4em;
   left: -5em;
   z-index: 1;
   width: 13em;
@@ -230,11 +235,6 @@ dd {
   margin: 0 0 0.3em 0;
 }
 td a {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   text-align: center;
   text-decoration: none;
   line-height: 4em;
