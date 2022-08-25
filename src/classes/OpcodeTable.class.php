@@ -16,12 +16,18 @@ final class OpcodeRow {
 }
 
 final class OpcodeTable {
-  const ITERATED_PARAMETERS = ['b', 'p', 'r', 'r1', 'r2'];
-
-  const REGISTER_NAMES = [
+  const EIGHT_BIT_REGISTER_NAMES = [
     '' => ['B', 'C', 'D', 'E', 'H', 'L', null, 'A'],
     'ix' => ['B', 'C', 'D', 'E', 'IXH', 'IXL', null, 'A'],
     'iy' => ['B', 'C', 'D', 'E', 'IYH', 'IYL', null, 'A']
+  ];
+
+  const ITERATED_PARAMETERS = ['b', 'dd', 'p', 'r', 'r1', 'r2'];
+
+  const SIXTEEN_BIT_REGISTER_NAMES = [
+    '' => ['BC', 'DE', 'HL', 'SP'],
+    'ix' => ['BC', 'DE', 'IX', 'SP'],
+    'iy' => ['BC', 'DE', 'IY', 'SP']
   ];
 
   const TABLE_NAMES = [
@@ -129,7 +135,10 @@ final class OpcodeTable {
     int $byte_index,
     array $substitutions
   ): array {
-    $register_names = self::REGISTER_NAMES[$opcode->category];
+    $eight_bit_register_names =
+        self::EIGHT_BIT_REGISTER_NAMES[$opcode->category];
+    $sixteen_bit_register_names =
+        self::SIXTEEN_BIT_REGISTER_NAMES[$opcode->category];
 
     if ($byte_index === count($opcode->bytes)) {
       $opcode_copy = clone $opcode;
@@ -138,11 +147,17 @@ final class OpcodeTable {
 
       $opcode_copy->description = preg_replace_callback(
         '/\$(\w+)/',
-        function($matches) use ($register_names, $substitutions) {
+        function($matches) use (
+          $eight_bit_register_names,
+          $sixteen_bit_register_names,
+          $substitutions
+        ) {
           return in_array($matches[1], self::ITERATED_PARAMETERS)
-            ? $matches[1][0] === 'r'
-              ? $register_names[$substitutions[$matches[1]]]
-              : $substitutions[$matches[1]]
+            ? $matches[1][0] !== 'r'
+              ? $matches[1] !== 'dd'
+                ? $substitutions[$matches[1]]
+                : $sixteen_bit_register_names[$substitutions[$matches[1]]]
+              : $eight_bit_register_names[$substitutions[$matches[1]]]
             : "<var>$matches[1]</var>";
         },
         $opcode->description
@@ -170,6 +185,30 @@ final class OpcodeTable {
         );
       }, range(0, 7)));
     } else if (
+      !array_key_exists('dd', $substitutions) &&
+          strpos($opcode->bytes[$byte_index], 'dd') !== false
+    ) {
+      return array_merge(...array_map(function(int $register) use (
+        $byte_index,
+        $opcode,
+        $sixteen_bit_register_names,
+        $substitutions
+      ): array {
+        $opcode_copy = clone $opcode;
+
+        $opcode_copy->mnemonic = str_replace(
+          'dd',
+          $sixteen_bit_register_names[$register],
+          $opcode->mnemonic
+        );
+
+        return self::listOpcodesFromShorthand(
+          $opcode_copy,
+          $byte_index,
+          array_merge($substitutions, ['dd' => $register])
+        );
+      }, range(0, 3)));
+    } else if (
       !array_key_exists('p', $substitutions) &&
           strpos($opcode->bytes[$byte_index], 'p') !== false
     ) {
@@ -195,12 +234,16 @@ final class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
-        $register_names,
+        $eight_bit_register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
-        $opcode_copy->mnemonic =
-            str_replace('r1', $register_names[$register], $opcode->mnemonic);
+
+        $opcode_copy->mnemonic = str_replace(
+          'r1',
+          $eight_bit_register_names[$register],
+          $opcode->mnemonic
+        );
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,
@@ -215,12 +258,16 @@ final class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
-        $register_names,
+        $eight_bit_register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
-        $opcode_copy->mnemonic =
-            str_replace('r2', $register_names[$register], $opcode->mnemonic);
+
+        $opcode_copy->mnemonic = str_replace(
+          'r2',
+          $eight_bit_register_names[$register],
+          $opcode->mnemonic
+        );
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,
@@ -235,12 +282,16 @@ final class OpcodeTable {
       return array_merge(...array_map(function(int $register) use (
         $byte_index,
         $opcode,
-        $register_names,
+        $eight_bit_register_names,
         $substitutions
       ): array {
         $opcode_copy = clone $opcode;
-        $opcode_copy->mnemonic =
-            str_replace('r', $register_names[$register], $opcode->mnemonic);
+
+        $opcode_copy->mnemonic = str_replace(
+          'r',
+          $eight_bit_register_names[$register],
+          $opcode->mnemonic
+        );
 
         return self::listOpcodesFromShorthand(
           $opcode_copy,

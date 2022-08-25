@@ -53,32 +53,11 @@
     "undocumented": true
   },
   {
-    "bytes": ["ED", "4A"],
+    "bytes": ["ED", "(dd<<4)+$4A"],
     "cycles": "15",
-    "description": "Adds BC and the carry flag to HL.",
+    "description": "Adds $dd and the carry flag to HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC HL,BC"
-  },
-  {
-    "bytes": ["ED", "5A"],
-    "cycles": "15",
-    "description": "Adds DE and the carry flag to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC HL,DE"
-  },
-  {
-    "bytes": ["ED", "6A"],
-    "cycles": "15",
-    "description": "Adds HL and the carry flag to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC HL,HL"
-  },
-  {
-    "bytes": ["ED", "7A"],
-    "cycles": "15",
-    "description": "Adds SP and the carry flag to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "ADC HL,SP"
+    "mnemonic": "ADC HL,dd"
   },
   {
     "bytes": ["86"],
@@ -134,88 +113,27 @@
     "undocumented": true
   },
   {
-    "bytes": ["09"],
+    "bytes": ["(dd<<4)+$09"],
     "cycles": "11",
-    "description": "The value of BC is added to HL.",
+    "description": "The value of $dd is added to HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD HL,BC"
+    "mnemonic": "ADD HL,dd"
   },
   {
-    "bytes": ["19"],
-    "cycles": "11",
-    "description": "The value of DE is added to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD HL,DE"
-  },
-  {
-    "bytes": ["29"],
-    "cycles": "11",
-    "description": "The value of HL is added to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD HL,HL"
-  },
-  {
-    "bytes": ["39"],
-    "cycles": "11",
-    "description": "The value of SP is added to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD HL,SP"
-  },
-  {
-    "bytes": ["DD", "09"],
+    "bytes": ["DD", "(dd<<4)+$09"],
+    "category": "ix",
     "cycles": "15",
-    "description": "The value of BC is added to IX.",
+    "description": "The value of $dd is added to IX.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IX,BC"
+    "mnemonic": "ADD IX,dd"
   },
   {
-    "bytes": ["DD", "19"],
+    "bytes": ["FD", "(dd<<4)+$09"],
+    "category": "iy",
     "cycles": "15",
-    "description": "The value of DE is added to IX.",
+    "description": "The value of $dd is added to IY.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IX,DE"
-  },
-  {
-    "bytes": ["DD", "29"],
-    "cycles": "15",
-    "description": "The value of IX is added to IX.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IX,IX"
-  },
-  {
-    "bytes": ["DD", "39"],
-    "cycles": "15",
-    "description": "The value of SP is added to IX.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IX,SP"
-  },
-  {
-    "bytes": ["FD", "09"],
-    "cycles": "15",
-    "description": "The value of BC is added to IY.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IY,BC"
-  },
-  {
-    "bytes": ["FD", "19"],
-    "cycles": "15",
-    "description": "The value of DE is added to IY.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IY,DE"
-  },
-  {
-    "bytes": ["FD", "29"],
-    "cycles": "15",
-    "description": "The value of IX is added to IY.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IY,IY"
-  },
-  {
-    "bytes": ["FD", "39"],
-    "cycles": "15",
-    "description": "The value of SP is added to IY.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "ADD IY,SP"
+    "mnemonic": "ADD IY,dd"
   },
   {
     "bytes": ["A6"],
@@ -597,27 +515,6 @@
     "mnemonic": "DEC (IY+d)"
   },
   {
-    "bytes": ["0B"],
-    "cycles": "6",
-    "description": "Subtracts one from BC.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "DEC BC"
-  },
-  {
-    "bytes": ["1B"],
-    "cycles": "6",
-    "description": "Subtracts one from DE.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "DEC DE"
-  },
-  {
-    "bytes": ["2B"],
-    "cycles": "6",
-    "description": "Subtracts one from HL.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "DEC HL"
-  },
-  {
     "bytes": ["DD", "2B"],
     "cycles": "10",
     "description": "Subtracts one from IX.",
@@ -632,11 +529,11 @@
     "mnemonic": "DEC IY"
   },
   {
-    "bytes": ["3B"],
+    "bytes": ["(dd<<4)+$0B"],
     "cycles": "6",
-    "description": "Subtracts one from SP.",
+    "description": "Subtracts one from $dd.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "DEC SP"
+    "mnemonic": "DEC dd"
   },
   {
     "bytes": ["(r<<3)+$05"],
@@ -806,27 +703,6 @@
     "mnemonic": "INC (IY+d)"
   },
   {
-    "bytes": ["03"],
-    "cycles": "6",
-    "description": "Adds one to BC.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "INC BC"
-  },
-  {
-    "bytes": ["13"],
-    "cycles": "6",
-    "description": "Adds one to DE.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "INC DE"
-  },
-  {
-    "bytes": ["23"],
-    "cycles": "6",
-    "description": "Adds one to HL.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "INC HL"
-  },
-  {
     "bytes": ["DD", "23"],
     "cycles": "10",
     "description": "Adds one to IX.",
@@ -841,11 +717,11 @@
     "mnemonic": "INC IY"
   },
   {
-    "bytes": ["33"],
+    "bytes": ["(dd<<4)+$03"],
     "cycles": "6",
-    "description": "Adds one to SP.",
+    "description": "Adds one to $dd.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "INC SP"
+    "mnemonic": "INC dd"
   },
   {
     "bytes": ["(r<<3)+$04"],
@@ -1175,25 +1051,11 @@
     "mnemonic": "LD BC,(nn)"
   },
   {
-    "bytes": ["01", "nn"],
-    "cycles": "10",
-    "description": "Loads $nn into BC.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD BC,nn"
-  },
-  {
     "bytes": ["ED", "5B", "nn"],
     "cycles": "20",
     "description": "Loads the value pointed to by $nn into DE.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD DE,(nn)"
-  },
-  {
-    "bytes": ["11", "nn"],
-    "cycles": "10",
-    "description": "Loads $nn into DE.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD DE,nn"
   },
   {
     "bytes": ["2A", "nn"],
@@ -1205,17 +1067,10 @@
   {
     "bytes": ["ED", "6B", "nn"],
     "cycles": "20",
-    "description": "Loads the value pointed to by $nn into DE.",
+    "description": "Loads the value pointed to by $nn into HL.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "LD HL,(nn)",
     "undocumented": true
-  },
-  {
-    "bytes": ["21", "nn"],
-    "cycles": "10",
-    "description": "Loads $nn into HL.",
-    "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD HL,nn"
   },
   {
     "bytes": ["ED", "47"],
@@ -1288,11 +1143,11 @@
     "mnemonic": "LD SP,IY"
   },
   {
-    "bytes": ["31", "nn"],
+    "bytes": ["(dd<<4)+$01", "nn"],
     "cycles": "10",
-    "description": "Loads $nn into SP.",
+    "description": "Loads $nn into $dd.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
-    "mnemonic": "LD SP,nn"
+    "mnemonic": "LD dd,nn"
   },
   {
     "bytes": ["(r<<3)+$46"],
@@ -2066,32 +1921,11 @@
     "undocumented": true
   },
   {
-    "bytes": ["ED", "42"],
+    "bytes": ["ED", "(dd<<4)+$42"],
     "cycles": "15",
-    "description": "Subtracts BC and the carry flag from HL.",
+    "description": "Subtracts $dd and the carry flag from HL.",
     "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC HL,BC"
-  },
-  {
-    "bytes": ["ED", "52"],
-    "cycles": "15",
-    "description": "Subtracts DE and the carry flag from HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC HL,DE"
-  },
-  {
-    "bytes": ["ED", "62"],
-    "cycles": "15",
-    "description": "Subtracts HL and the carry flag from HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC HL,HL"
-  },
-  {
-    "bytes": ["ED", "72"],
-    "cycles": "15",
-    "description": "Subtracts SP and the carry flag from HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
-    "mnemonic": "SBC HL,SP"
+    "mnemonic": "SBC HL,dd"
   },
   {
     "bytes": ["37"],
