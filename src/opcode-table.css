@@ -2,16 +2,10 @@ html {
   margin: 0;
   scroll-behavior: smooth;
 }
-body,
-span,
-dl,
-td a {
-  font-family: serif;
-}
 body {
   margin: 0 0 20em 0;
   background-color: #d2d7d9;
-  font-size: 16px;
+  font: 16px serif;
 }
 header {
   padding: 4em 2em;
@@ -59,6 +53,22 @@ p a {
 p a:hover {
   text-decoration: underline;
 }
+input {
+  display: block;
+  width: 20em;
+  margin: 2em auto 0 auto;
+  border: 0.1em solid transparent;
+  border-radius: 0.2em;
+  background-color: #a6b8c1;
+  color: inherit;
+  padding: 0.3em 0.4em;
+  font-size: 2em;
+  font-family: inherit;
+}
+input:hover,
+input:focus {
+  border-color: #467286;
+}
 ul {
   margin: 4em 0 2em 0;
   padding: 0;
@@ -100,6 +110,10 @@ td.z180 {
   background-color: #b8a6c2;
   color: #5d2e77;
 }
+td.unmatched {
+  background-color: #617078;
+  color: #232627;
+}
 h2 {
   margin: 2em 0 1em 0;
   text-align: center;
@@ -129,10 +143,6 @@ th {
 td {
   position: relative;
   color: #232627;
-  word-break: break-all;
-  overflow-wrap: anywhere;
-  font-family: monospace;
-  font-weight: bold;
 }
 tr:first-child th,
 tr + tr td {
@@ -187,6 +197,11 @@ td a {
   left: 0;
   height: 4em;
 }
+code {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  font-weight: bold;
+}
 dl {
   display: none;
   position: absolute;
@@ -199,8 +214,6 @@ dl {
   box-shadow: 0 0 0.2em #806d15;
   background-color: #e4ddb9;
   color: #806d15;
-  word-break: normal;
-  font-weight: normal;
 }
 td:hover dl {
   display: block;
@@ -237,6 +250,7 @@ dd {
 td a {
   text-align: center;
   text-decoration: none;
+  font-weight: bold;
   line-height: 4em;
 }
 td a:hover {

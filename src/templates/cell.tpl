@@ -1,5 +1,5 @@
 <td{if $cell.class} class="{$cell.class}"{/if}>{if $cell.mnemonic}
-  {$cell.mnemonic}
+  <code>{$cell.mnemonic}</code>
   <dl>
     <dt>Opcode</dt>
     <dd>{foreach from=$cell.bytes item=byte}{$byte}{/foreach}</dd>

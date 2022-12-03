@@ -5,4 +5,4 @@ index.html:src/templates/cell.tpl
 index.html:src/templates/index.tpl
 index.html:src/templates/row.tpl
 index.html:src/templates/table.tpl
-opcode_table.css:src/opcode_table.css
+opcode-table.css:src/opcode-table.css
