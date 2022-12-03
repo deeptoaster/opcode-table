@@ -331,63 +331,63 @@
   {
     "bytes": ["DC", "nn"],
     "cycles": "17/10",
-    "description": "If the carry flag is set, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the carry flag is set, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL C,nn"
   },
   {
     "bytes": ["FC", "nn"],
     "cycles": "17/10",
-    "description": "If the sign flag is set, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the sign flag is set, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL M,nn"
   },
   {
     "bytes": ["D4", "nn"],
     "cycles": "17/10",
-    "description": "If the carry flag is unset, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the carry flag is unset, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL NC,nn"
   },
   {
     "bytes": ["C4", "nn"],
     "cycles": "17/10",
-    "description": "If the zero flag is unset, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the zero flag is unset, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL NZ,nn"
   },
   {
     "bytes": ["F4", "nn"],
     "cycles": "17/10",
-    "description": "If the sign flag is unset, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the sign flag is unset, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL P,nn"
   },
   {
     "bytes": ["EC", "nn"],
     "cycles": "17/10",
-    "description": "If the parity/overflow flag is set, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the parity/overflow flag is set, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL PE,nn"
   },
   {
     "bytes": ["E4", "nn"],
     "cycles": "17/10",
-    "description": "If the parity/overflow flag is unset, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the parity/overflow flag is unset, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL PO,nn"
   },
   {
     "bytes": ["CC", "nn"],
     "cycles": "17/10",
-    "description": "If the zero flag is set, the current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "If the zero flag is set, the current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL Z,nn"
   },
   {
     "bytes": ["CD", "nn"],
     "cycles": "17",
-    "description": "The current pc value plus three is pushed onto the stack, then is loaded with $nn.",
+    "description": "The current PC value plus three is pushed onto the stack, then is loaded with $nn.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "CALL nn"
   },
@@ -570,7 +570,7 @@
   {
     "bytes": ["10", "d-$-2"],
     "cycles": "13/8",
-    "description": "The B register is decremented, and if not zero, the signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "The B register is decremented, and if not zero, the signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "DJNZ d"
   },
@@ -779,119 +779,119 @@
   {
     "bytes": ["E9"],
     "cycles": "4",
-    "description": "Loads the value of HL into pc.",
+    "description": "Loads the value of HL into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP (HL)"
   },
   {
     "bytes": ["DD", "E9"],
     "cycles": "8",
-    "description": "Loads the value of IX into pc.",
+    "description": "Loads the value of IX into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP (IX)"
   },
   {
     "bytes": ["FD", "E9"],
     "cycles": "8",
-    "description": "Loads the value of IY into pc.",
+    "description": "Loads the value of IY into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP (IY)"
   },
   {
     "bytes": ["DA", "nn"],
     "cycles": "10",
-    "description": "If the carry flag is set, $nn is copied to pc.",
+    "description": "If the carry flag is set, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP C,nn"
   },
   {
     "bytes": ["FA", "nn"],
     "cycles": "10",
-    "description": "If the sign flag is set, $nn is copied to pc.",
+    "description": "If the sign flag is set, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP M,nn"
   },
   {
     "bytes": ["D2", "nn"],
     "cycles": "10",
-    "description": "If the carry flag is unset, $nn is copied to pc.",
+    "description": "If the carry flag is unset, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP NC,nn"
   },
   {
     "bytes": ["C2", "nn"],
     "cycles": "10",
-    "description": "If the zero flag is unset, $nn is copied to pc.",
+    "description": "If the zero flag is unset, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP NZ,nn"
   },
   {
     "bytes": ["F2", "nn"],
     "cycles": "10",
-    "description": "If the sign flag is unset, $nn is copied to pc.",
+    "description": "If the sign flag is unset, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP P,nn"
   },
   {
     "bytes": ["EA", "nn"],
     "cycles": "10",
-    "description": "If the parity/overflow flag is set, $nn is copied to pc.",
+    "description": "If the parity/overflow flag is set, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP PE,nn"
   },
   {
     "bytes": ["E2", "nn"],
     "cycles": "10",
-    "description": "If the parity/overflow flag is unset, $nn is copied to pc.",
+    "description": "If the parity/overflow flag is unset, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP PO,nn"
   },
   {
     "bytes": ["CA", "nn"],
     "cycles": "10",
-    "description": "If the zero flag is set, $nn is copied to pc.",
+    "description": "If the zero flag is set, $nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP Z,nn"
   },
   {
     "bytes": ["C3", "nn"],
     "cycles": "10",
-    "description": "$nn is copied to pc.",
+    "description": "$nn is copied to PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JP nn"
   },
   {
     "bytes": ["38", "d-$-2"],
     "cycles": "12/7",
-    "description": "If the carry flag is set, the signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "If the carry flag is set, the signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JR C,d"
   },
   {
     "bytes": ["30", "d-$-2"],
     "cycles": "12/7",
-    "description": "If the carry flag is unset, the signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "If the carry flag is unset, the signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JR NC,d"
   },
   {
     "bytes": ["20", "d-$-2"],
     "cycles": "12/7",
-    "description": "If the zero flag is unset, the signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "If the zero flag is unset, the signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JR NZ,d"
   },
   {
     "bytes": ["28", "d-$-2"],
     "cycles": "12/7",
-    "description": "If the zero flag is set, the signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "If the zero flag is set, the signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JR Z,d"
   },
   {
     "bytes": ["18", "d-$-2"],
     "cycles": "12",
-    "description": "The signed value $d is added to pc. The jump is measured from the start of the instruction opcode.",
+    "description": "The signed value $d is added to PC. The jump is measured from the start of the instruction opcode.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "JR d"
   },
@@ -1568,70 +1568,70 @@
   {
     "bytes": ["C9"],
     "cycles": "10",
-    "description": "The top stack entry is popped into pc.",
+    "description": "The top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET"
   },
   {
     "bytes": ["D8"],
     "cycles": "11/5",
-    "description": "If the carry flag is set, the top stack entry is popped into pc.",
+    "description": "If the carry flag is set, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET C"
   },
   {
     "bytes": ["F8"],
     "cycles": "11/5",
-    "description": "If the sign flag is set, the top stack entry is popped into pc.",
+    "description": "If the sign flag is set, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET M"
   },
   {
     "bytes": ["D0"],
     "cycles": "11/5",
-    "description": "If the carry flag is unset, the top stack entry is popped into pc.",
+    "description": "If the carry flag is unset, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET NC"
   },
   {
     "bytes": ["C0"],
     "cycles": "11/5",
-    "description": "If the zero flag is unset, the top stack entry is popped into pc.",
+    "description": "If the zero flag is unset, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET NZ"
   },
   {
     "bytes": ["F0"],
     "cycles": "11/5",
-    "description": "If the sign flag is unset, the top stack entry is popped into pc.",
+    "description": "If the sign flag is unset, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET P"
   },
   {
     "bytes": ["E8"],
     "cycles": "11/5",
-    "description": "If the parity/overflow flag is set, the top stack entry is popped into pc.",
+    "description": "If the parity/overflow flag is set, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET PE"
   },
   {
     "bytes": ["E0"],
     "cycles": "11/5",
-    "description": "If the parity/overflow flag is unset, the top stack entry is popped into pc.",
+    "description": "If the parity/overflow flag is unset, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET PO"
   },
   {
     "bytes": ["C8"],
     "cycles": "11/5",
-    "description": "If the zero flag is set, the top stack entry is popped into pc.",
+    "description": "If the zero flag is set, the top stack entry is popped into PC.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RET Z"
   },
   {
     "bytes": ["ED", "4D"],
     "cycles": "14",
-    "description": "Used at the end of a maskable interrupt service routine. The top stack entry is popped into pc, and signals an I/O device that the interrupt has finished, allowing nested interrupts (not a consideration on the TI).",
+    "description": "Used at the end of a maskable interrupt service routine. The top stack entry is popped into PC, and signals an I/O device that the interrupt has finished, allowing nested interrupts (not a consideration on the TI).",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RETI"
   },
@@ -1863,7 +1863,7 @@
   {
     "bytes": ["p+$C7"],
     "cycles": "11",
-    "description": "The current pc value plus one is pushed onto the stack, then is loaded with $p.",
+    "description": "The current PC value plus one is pushed onto the stack, then is loaded with $p.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "RST p"
   },
