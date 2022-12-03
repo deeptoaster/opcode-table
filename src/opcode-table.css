@@ -131,7 +131,7 @@ td {
   padding: 0.5em;
 }
 th,
-th::after,
+emph,
 td::before {
   background-color: #374952;
 }
@@ -158,13 +158,13 @@ tr:first-child td {
   width: 1em;
   background-color: transparent;
 }
-th::after,
+emph,
 tr + tr td::before {
   content: "";
   display: none;
   opacity: 0.2;
 }
-th::after {
+emph {
   position: absolute;
   right: 0.1875em;
   left: 2.1875em;
@@ -172,7 +172,7 @@ th::after {
   height: 4em;
   margin-top: -2.5em;
 }
-tr:first-child th::after {
+tr:first-child emph {
   top: 2.1875em;
   right: auto;
   bottom: 0.1875em;
@@ -182,11 +182,11 @@ tr:first-child th::after {
   margin-top: 0;
   margin-left: -0.5em;
 }
-th:hover::after,
+th:hover emph,
 td:hover::before {
   display: block;
 }
-th::after:hover {
+th emph:hover {
   display: none;
 }
 td::before,
