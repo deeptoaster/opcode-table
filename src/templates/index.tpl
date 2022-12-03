@@ -4,9 +4,9 @@
     <title>Z80 Opcode Table</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="opcode-table.css" type="text/css" rel="stylesheet" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2" type="text/javascript"></script>
-    <script src="/bin/js/ga.js" type="text/javascript"></script>
-    <script src="bin/js/opcode-table.js" type="text/javascript"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2"></script>
+    <script src="/bin/js/ga.js"></script>
+    <script src="bin/js/opcode-table.js"></script>
   </head>
   <body>
     <header>
