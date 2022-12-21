@@ -10,7 +10,6 @@ function extractKeywords(text) {
 function initializeSearch() {
   var unmatchedMatchIndex = -UNMATCHED_CLASS.length - 1;
   var instructionCells = document.getElementsByTagName("td");
-  var navBar = document.getElementsByTagName("nav").item(0);
   var searchBar = document.createElement("input");
   var searchTimeout = 0;
 
@@ -39,7 +38,11 @@ function initializeSearch() {
   }
 
   searchBar.placeholder = SEARCH_BAR_PLACEHOLDER;
-  navBar.insertBefore(searchBar, navBar.firstChild);
+
+  document.body.insertBefore(
+    searchBar,
+    document.getElementsByTagName("ul").item(0)
+  );
 
   document.onkeydown = function (event) {
     if (event.key === "/") {

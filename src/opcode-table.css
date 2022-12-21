@@ -55,10 +55,14 @@ p a:hover {
 }
 input {
   display: block;
+  position: sticky;
+  top: 1em;
+  z-index: 2;
   width: 20em;
   margin: 2em auto 0 auto;
-  border: 0.1em solid transparent;
+  border: 0.1em solid #467286;
   border-radius: 0.2em;
+  outline: 0.2em solid #d2d7d9;
   background-color: #a6b8c1;
   color: inherit;
   padding: 0.3em 0.4em;
@@ -67,7 +71,7 @@ input {
 }
 input:hover,
 input:focus {
-  border-color: #467286;
+  border-color: #232627;
 }
 ul {
   margin: 4em 0 2em 0;
