@@ -2,8 +2,8 @@ var HASH_UPDATE_TIMEOUT = 200;
 var UNMATCHED_CLASS = "unmatched";
 var SEARCH_BAR_PLACEHOLDER = "filter by mnemonic or keywords\u2026 (/)";
 
-function extractKeywords(text) {
-  var textNormalized = text.replace(/^\s+|\s+$/g, "").toLowerCase();
+function extractKeywords(query) {
+  var textNormalized = normalizeQuery(query);
   return textNormalized !== "" ? textNormalized.split(/\s+/) : [];
 }
 
@@ -14,7 +14,7 @@ function initializeSearch() {
   var searchTimeout = 0;
 
   function updateHash() {
-    window.location.hash = searchBar.value;
+    window.location.hash = searchBar.value !== "" ? searchBar.value : " ";
   }
 
   for (
@@ -69,7 +69,7 @@ function initializeSearch() {
   window.onhashchange = function () {
     var searchQuery = decodeURIComponent(window.location.hash).slice(1);
 
-    if (searchBar.value !== searchQuery) {
+    if (normalizeQuery(searchBar.value) !== normalizeQuery(searchQuery)) {
       searchBar.value = searchQuery;
     }
 
@@ -100,6 +100,10 @@ function initializeSearch() {
   };
 
   window.onhashchange();
+}
+
+function normalizeQuery(query) {
+  return query.replace(/^\s+|\s+$/g, "").toLowerCase();
 }
 
 document.addEventListener("DOMContentLoaded", initializeSearch);

@@ -18,7 +18,7 @@
       </h1>
       <p>Enjoying this service? Consider <a href="https://www.paypal.com/donate/?business=T3NJS3T45WMFC&item_name=Z80+Opcode+Table&currency_code=USD">buying me a beer</a> (or donating to help cover server costs)!</p>
       <p>Want a free, online Z80 assembler where you can save your projects in the cloud? Check out the <a href="https://clrhome.org/asm/">ORG Z80 IDE</a>!</p>
-      <p>Spot an error? <a href="mailto:deeptoaster@gmail.com">Send me an email</a> or <a href="https://github.com/deeptoaster/opcode-table">open a pull request</a>!</p>
+      <p>Made by <a href="https://fishbotwilleatyou.com/">Deep Toaster</a>. Have a suggestion or spot an error? <a href="mailto:deeptoaster@gmail.com">Send me an email</a> or <a href="https://github.com/deeptoaster/opcode-table">open a pull request</a>!</p>
     </header>
     <ul>
       <li>normal instructions</li>
