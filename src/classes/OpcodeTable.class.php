@@ -147,18 +147,18 @@ final class OpcodeTable {
 
       $opcode_copy->description = preg_replace_callback(
         '/\$(\w+)/',
-        function($matches) use (
+        function($match) use (
           $eight_bit_register_names,
           $sixteen_bit_register_names,
           $substitutions
         ) {
-          return in_array($matches[1], self::ITERATED_PARAMETERS)
-            ? $matches[1][0] !== 'r'
-              ? $matches[1] !== 'dd'
-                ? $substitutions[$matches[1]]
-                : $sixteen_bit_register_names[$substitutions[$matches[1]]]
-              : $eight_bit_register_names[$substitutions[$matches[1]]]
-            : "<var>$matches[1]</var>";
+          return in_array($match[1], self::ITERATED_PARAMETERS)
+            ? $match[1][0] !== 'r'
+              ? $match[1] !== 'dd'
+                ? $substitutions[$match[1]]
+                : $sixteen_bit_register_names[$substitutions[$match[1]]]
+              : $eight_bit_register_names[$substitutions[$match[1]]]
+            : "<var>$match[1]</var>";
         },
         $opcode->description
       );
