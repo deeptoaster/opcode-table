@@ -9,7 +9,7 @@ $cleverly->preserveIndent = true;
 $cleverly->setTemplateDir(__DIR__ . '/templates');
 
 $cleverly->display('index.tpl', [
-  'hash' => dechex(time()),
+  'date' => strftime('%F'),
   'tables' => OpcodeTable::fromFile(__DIR__ . '/../opcode-table.json')
 ]);
 ?>

@@ -1,5 +1,8 @@
+var AUTOSCROLL_MARGIN = 64;
+var AUTOSCROLL_THRESHOLD = 16;
 var HASH_UPDATE_TIMEOUT = 200;
 var UNMATCHED_CLASS = "unmatched";
+var UNMATCHED_MATCH_INDEX = -UNMATCHED_CLASS.length - 1;
 var SEARCH_BAR_PLACEHOLDER = "filter by mnemonic or keywords\u2026 (/)";
 
 function extractKeywords(query) {
@@ -7,8 +10,11 @@ function extractKeywords(query) {
   return textNormalized !== "" ? textNormalized.split(/\s+/) : [];
 }
 
+function isUnmatched(cell) {
+  return cell.className.slice(UNMATCHED_MATCH_INDEX) === " " + UNMATCHED_CLASS;
+}
+
 function initializeSearch() {
-  var unmatchedMatchIndex = -UNMATCHED_CLASS.length - 1;
   var instructionCells = document.getElementsByTagName("td");
   var searchBar = document.createElement("input");
   var searchTimeout = 0;
@@ -54,7 +60,35 @@ function initializeSearch() {
   };
 
   searchBar.onkeydown = function (event) {
-    if (event.key === "Escape") {
+    if (event.key === "Enter") {
+      if (document.getElementsByClassName(UNMATCHED_CLASS).length !== 0) {
+        var scrollOffset = null;
+        var autoscrollBuffer =
+          searchBar.getBoundingClientRect().height + AUTOSCROLL_MARGIN;
+
+        for (
+          var instructionCellIndex = 0;
+          instructionCellIndex < instructionCells.length;
+          instructionCellIndex++
+        ) {
+          var instructionCell = instructionCells.item(instructionCellIndex);
+          var offset = instructionCell.getBoundingClientRect().top;
+
+          if (!isUnmatched(instructionCell)) {
+            if (scrollOffset == null) {
+              scrollOffset = offset;
+            }
+
+            if (offset - autoscrollBuffer >= AUTOSCROLL_THRESHOLD) {
+              scrollOffset = offset;
+              break;
+            }
+          }
+        }
+
+        document.documentElement.scrollTop += scrollOffset - autoscrollBuffer;
+      }
+    } else if (event.key === "Escape") {
       searchBar.blur();
       event.preventDefault();
       event.stopPropagation();
@@ -83,9 +117,8 @@ function initializeSearch() {
       var instructionCell = instructionCells.item(instructionCellIndex);
 
       instructionCell.className =
-        (instructionCell.className.slice(unmatchedMatchIndex) ===
-        " " + UNMATCHED_CLASS
-          ? instructionCell.className.slice(0, unmatchedMatchIndex)
+        (isUnmatched(instructionCell)
+          ? instructionCell.className.slice(0, UNMATCHED_MATCH_INDEX)
           : instructionCell.className) +
         (searchKeywords.length === 0 ||
         ("keywords" in instructionCell &&

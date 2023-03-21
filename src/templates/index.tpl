@@ -3,10 +3,10 @@
   <head>
     <title>Z80 Opcode Table</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="opcode-table.css?version={$hash}" type="text/css" rel="stylesheet" />
+    <link href="opcode-table.css?v={$date}" type="text/css" rel="stylesheet" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2"></script>
     <script src="/bin/js/ga.js"></script>
-    <script src="bin/js/opcode-table.js?version={$hash}"></script>
+    <script src="bin/js/opcode-table.js?v={$date}"></script>
   </head>
   <body>
     <header>
