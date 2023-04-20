@@ -454,29 +454,29 @@
   {
     "bytes": ["ED", "A9"],
     "cycles": "16",
-    "description": "Compares the value of the memory location pointed to by HL with A. Then HL and BC are decremented.",
+    "description": "Compares the value of the memory location pointed to by HL with A. Then HL and BC are decremented. p/v is reset if BC becomes zero and set otherwise.",
     "flags": { "c": "-", "h": "+", "n": "1", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "CPD"
   },
   {
     "bytes": ["ED", "B9"],
     "cycles": "21/16",
-    "description": "Compares the value of the memory location pointed to by HL with A. Then HL and BC are decremented. If BC is not zero and z is not set, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "0", "s": "+", "z": "+" },
+    "description": "Compares the value of the memory location pointed to by HL with A. Then HL and BC are decremented. If BC is not zero and z is not set, this operation is repeated. p/v is reset if BC becomes zero and set otherwise, acting as an indicator that HL reached a memory location whose value equalled A before the counter went to zero. Interrupts can trigger while this instruction is processing.",
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "CPDR"
   },
   {
     "bytes": ["ED", "A1"],
     "cycles": "16",
-    "description": "Compares the value of the memory location pointed to by HL with A. Then HL is incremented and BC is decremented.",
+    "description": "Compares the value of the memory location pointed to by HL with A. Then HL is incremented and BC is decremented. p/v is reset if BC becomes zero and set otherwise.",
     "flags": { "c": "-", "h": "+", "n": "1", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "CPI"
   },
   {
     "bytes": ["ED", "B1"],
     "cycles": "21/16",
-    "description": "Compares the value of the memory location pointed to by HL with A. Then HL is incremented and BC is decremented. If BC is not zero and z is not set, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "0", "s": "+", "z": "+" },
+    "description": "Compares the value of the memory location pointed to by HL with A. Then HL is incremented and BC is decremented. If BC is not zero and z is not set, this operation is repeated. p/v is reset if BC becomes zero and set otherwise, acting as an indicator that HL reached a memory location whose value equalled A before the counter went to zero. Interrupts can trigger while this instruction is processing.",
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "*", "s": "+", "z": "+" },
     "mnemonic": "CPIR"
   },
   {
@@ -1223,7 +1223,7 @@
   {
     "bytes": ["ED", "A8"],
     "cycles": "16",
-    "description": "Transfers a byte of data from the memory location pointed to by HL to the memory location pointed to by DE. Then HL, DE, and BC are decremented.",
+    "description": "Transfers a byte of data from the memory location pointed to by HL to the memory location pointed to by DE. Then HL, DE, and BC are decremented. p/v is reset if BC becomes zero and set otherwise.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "*", "s": "-", "z": "-" },
     "mnemonic": "LDD"
   },
@@ -1237,7 +1237,7 @@
   {
     "bytes": ["ED", "A0"],
     "cycles": "16",
-    "description": "Transfers a byte of data from the memory location pointed to by HL to the memory location pointed to by DE. Then HL and DE are incremented and BC is decremented.",
+    "description": "Transfers a byte of data from the memory location pointed to by HL to the memory location pointed to by DE. Then HL and DE are incremented and BC is decremented. p/v is reset if BC becomes zero and set otherwise.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "*", "s": "-", "z": "-" },
     "mnemonic": "LDI"
   },
