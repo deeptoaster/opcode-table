@@ -3,6 +3,7 @@
   <head>
     <title>Z80 Opcode Table</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://clrhome.org/logo.css" type="text/css" rel="stylesheet" />
     <link href="opcode-table.css?v={$date}" type="text/css" rel="stylesheet" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2"></script>
     <script src="/bin/js/ga.js"></script>
@@ -10,7 +11,7 @@
   </head>
   <body>
     <header>
-      <h1>
+      <h1 class="logo">
         <a href="https://clrhome.org/resources/">
           <span>another resource by</span>
           <img src="https://clrhome.org/images/emblem.png" alt="ClrHome" />

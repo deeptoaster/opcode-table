@@ -1,5 +1,7 @@
 index.html:lib/cleverly
 index.html:lib/tools
+index.html:src/classes/Opcode.class.php
+index.html:src/classes/OpcodeTable.class.php
 index.html:src/index.php
 index.html:src/templates/cell.tpl
 index.html:src/templates/index.tpl

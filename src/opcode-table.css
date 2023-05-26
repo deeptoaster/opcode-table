@@ -13,44 +13,21 @@ header {
   color: #617078;
   text-align: right;
 }
-h1,
+.logo,
 p {
   width: 85.375em;
   margin: 1em auto;
   font-size: 1em;
 }
-h1 a,
-img {
-  width: 18em;
-  border: none;
-  outline: none;
-}
-h1 a {
-  position: relative;
+.logo a {
   float: left;
-  opacity: 0.1;
-  transition: opacity 200ms;
-}
-h1 a:hover {
-  opacity: 0.2;
-}
-span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: transparent;
-  font-size: 0.9765625em;
-  font-family: sans-serif;
-  transition: color 200ms;
-}
-h1 a:hover span {
-  color: #fff;
 }
 p a {
   color: #a6b8c1;
   text-decoration: none;
 }
-p a:hover {
+p a:hover,
+p a:focus {
   text-decoration: underline;
 }
 input {
