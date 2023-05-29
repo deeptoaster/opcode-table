@@ -1,43 +1,50 @@
-var AUTOSCROLL_MARGIN = 64;
-var AUTOSCROLL_THRESHOLD = 16;
-var HASH_UPDATE_TIMEOUT = 200;
-var UNMATCHED_CLASS = "unmatched";
-var UNMATCHED_MATCH_INDEX = -UNMATCHED_CLASS.length - 1;
-var SEARCH_BAR_PLACEHOLDER = "filter by mnemonic or keywords\u2026 (/)";
+const AUTOSCROLL_MARGIN = 64;
+const AUTOSCROLL_THRESHOLD = 16;
+const HASH_UPDATE_TIMEOUT = 200;
+const UNMATCHED_CLASS = "unmatched";
+const UNMATCHED_MATCH_INDEX = -UNMATCHED_CLASS.length - 1;
+const SEARCH_BAR_PLACEHOLDER = "filter by mnemonic or keywords\u2026 (/)";
 
-function extractKeywords(query) {
-  var textNormalized = normalizeQuery(query);
+type InstructionCell = HTMLTableCellElement & {
+  keywords: ReadonlyArray<string>;
+};
+
+function extractKeywords(query: string): ReadonlyArray<string> {
+  const textNormalized = normalizeQuery(query);
   return textNormalized !== "" ? textNormalized.split(/\s+/) : [];
 }
 
-function isUnmatched(cell) {
+function isUnmatched(cell: HTMLTableDataCellElement): boolean {
   return cell.className.slice(UNMATCHED_MATCH_INDEX) === " " + UNMATCHED_CLASS;
 }
 
-function initializeSearch() {
-  var instructionCells = document.getElementsByTagName("td");
-  var searchBar = document.createElement("input");
-  var searchTimeout = 0;
+function initializeSearch(): void {
+  const instructionCells = document.getElementsByTagName("td");
+  const searchBar = document.createElement("input");
+  let searchTimeout = 0;
 
-  function updateHash() {
+  function updateHash(): void {
     window.location.hash = searchBar.value !== "" ? searchBar.value : " ";
   }
 
   for (
-    var instructionCellIndex = 0;
+    let instructionCellIndex = 0;
     instructionCellIndex < instructionCells.length;
     instructionCellIndex++
   ) {
-    var instructionCell = instructionCells.item(instructionCellIndex);
-    var instructionDds = instructionCell.getElementsByTagName("dd");
+    const instructionCell = instructionCells.item(
+      instructionCellIndex
+    ) as InstructionCell;
+
+    const instructionDds = instructionCell.getElementsByTagName("dd");
 
     if (instructionDds.length !== 0) {
       instructionCell.keywords = extractKeywords(
-        instructionCell.getElementsByTagName("code").item(0).textContent
+        instructionCell.getElementsByTagName("code").item(0)?.textContent!
       ).concat(
-        extractKeywords(instructionDds.item(0).textContent),
+        extractKeywords(instructionDds.item(0)?.textContent!),
         extractKeywords(
-          instructionDds.item(instructionDds.length - 1).textContent
+          instructionDds.item(instructionDds.length - 1)?.textContent!
         )
       );
     }
@@ -50,7 +57,7 @@ function initializeSearch() {
     document.getElementsByTagName("ul").item(0)
   );
 
-  document.onkeydown = function (event) {
+  document.onkeydown = function (event: KeyboardEvent): void {
     if (event.key === "/") {
       searchBar.focus();
       searchBar.select();
@@ -59,20 +66,20 @@ function initializeSearch() {
     }
   };
 
-  searchBar.onkeydown = function (event) {
+  searchBar.onkeydown = function (event: KeyboardEvent): void {
     if (event.key === "Enter") {
       if (document.getElementsByClassName(UNMATCHED_CLASS).length !== 0) {
-        var scrollOffset = null;
-        var autoscrollBuffer =
+        let scrollOffset = null;
+        const autoscrollBuffer =
           searchBar.getBoundingClientRect().height + AUTOSCROLL_MARGIN;
 
         for (
-          var instructionCellIndex = 0;
+          let instructionCellIndex = 0;
           instructionCellIndex < instructionCells.length;
           instructionCellIndex++
         ) {
-          var instructionCell = instructionCells.item(instructionCellIndex);
-          var offset = instructionCell.getBoundingClientRect().top;
+          const instructionCell = instructionCells.item(instructionCellIndex)!;
+          const offset = instructionCell.getBoundingClientRect().top;
 
           if (!isUnmatched(instructionCell)) {
             if (scrollOffset == null) {
@@ -86,7 +93,7 @@ function initializeSearch() {
           }
         }
 
-        document.documentElement.scrollTop += scrollOffset - autoscrollBuffer;
+        document.documentElement.scrollTop += scrollOffset! - autoscrollBuffer;
       }
     } else if (event.key === "Escape") {
       searchBar.blur();
@@ -95,26 +102,28 @@ function initializeSearch() {
     }
   };
 
-  searchBar.onkeyup = function () {
+  searchBar.onkeyup = function (): void {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(updateHash, HASH_UPDATE_TIMEOUT);
   };
 
-  window.onhashchange = function () {
-    var searchQuery = decodeURIComponent(window.location.hash).slice(1);
+  window.onhashchange = function (): void {
+    const searchQuery = decodeURIComponent(window.location.hash).slice(1);
 
     if (normalizeQuery(searchBar.value) !== normalizeQuery(searchQuery)) {
       searchBar.value = searchQuery;
     }
 
-    searchKeywords = extractKeywords(searchQuery);
+    const searchKeywords = extractKeywords(searchQuery);
 
     for (
-      var instructionCellIndex = 0;
+      let instructionCellIndex = 0;
       instructionCellIndex < instructionCells.length;
       instructionCellIndex++
     ) {
-      var instructionCell = instructionCells.item(instructionCellIndex);
+      const instructionCell = instructionCells.item(
+        instructionCellIndex
+      ) as InstructionCell;
 
       instructionCell.className =
         (isUnmatched(instructionCell)
@@ -122,8 +131,10 @@ function initializeSearch() {
           : instructionCell.className) +
         (searchKeywords.length === 0 ||
         ("keywords" in instructionCell &&
-          searchKeywords.every(function (searchKeyword) {
-            return instructionCell.keywords.some(function (keyword) {
+          searchKeywords.every(function (searchKeyword: string): boolean {
+            return instructionCell.keywords.some(function (
+              keyword: string
+            ): boolean {
               return keyword.slice(0, searchKeyword.length) === searchKeyword;
             });
           }))
@@ -132,10 +143,10 @@ function initializeSearch() {
     }
   };
 
-  window.onhashchange();
+  window.onhashchange(document.createEvent("HashChangeEvent"));
 }
 
-function normalizeQuery(query) {
+function normalizeQuery(query: string): string {
   return query.replace(/^\s+|\s+$/g, "").toLowerCase();
 }
 

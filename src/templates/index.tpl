@@ -7,7 +7,7 @@
     <link href="opcode-table.css?v={$date}" type="text/css" rel="stylesheet" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2"></script>
     <script src="/bin/js/ga.js"></script>
-    <script src="bin/js/opcode-table.js?v={$date}"></script>
+    <script src="opcode-table.js?v={$date}"></script>
   </head>
   <body>
     <header>

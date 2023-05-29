@@ -8,3 +8,4 @@ index.html:src/templates/index.tpl
 index.html:src/templates/row.tpl
 index.html:src/templates/table.tpl
 opcode-table.css:src/opcode-table.css
+opcode-table.js:src/opcode-table.ts
