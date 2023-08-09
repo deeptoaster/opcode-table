@@ -734,7 +734,7 @@
     "bytes": ["DD", "(r<<3)+$04"],
     "category": "ix",
     "cycles": "8",
-    "description": "Adds one to r.",
+    "description": "Adds one to $r.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC r",
     "undocumented": true
@@ -743,7 +743,7 @@
     "bytes": ["FD", "(r<<3)+$04"],
     "category": "iy",
     "cycles": "8",
-    "description": "Adds one to r.",
+    "description": "Adds one to $r.",
     "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC r",
     "undocumented": true
