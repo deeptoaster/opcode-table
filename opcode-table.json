@@ -1333,7 +1333,7 @@
     "bytes": ["DD", "r+$B0"],
     "category": "ix",
     "cycles": "8",
-    "description": "Bitwise OR on A with r.",
+    "description": "Bitwise OR on A with $r.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "OR r",
     "undocumented": true
@@ -1342,7 +1342,7 @@
     "bytes": ["FD", "r+$B0"],
     "category": "iy",
     "cycles": "8",
-    "description": "Bitwise OR on A with r.",
+    "description": "Bitwise OR on A with $r.",
     "flags": { "c": "0", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "OR r",
     "undocumented": true
@@ -1440,7 +1440,7 @@
   {
     "bytes": ["F1"],
     "cycles": "10",
-    "description": "The memory location pointed to by SP is stored into f and SP is incremented. The memory location pointed to by SP is stored into A and SP is incremented again.",
+    "description": "The memory location pointed to by SP is stored into F and SP is incremented. The memory location pointed to by SP is stored into A and SP is incremented again.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "POP AF"
   },
@@ -1482,7 +1482,7 @@
   {
     "bytes": ["F5"],
     "cycles": "11",
-    "description": "SP is decremented and A is stored into the memory location pointed to by SP. SP is decremented again and f is stored into the memory location pointed to by SP.",
+    "description": "SP is decremented and A is stored into the memory location pointed to by SP. SP is decremented again and F is stored into the memory location pointed to by SP.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "PUSH AF"
   },
