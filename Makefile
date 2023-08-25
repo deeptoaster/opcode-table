@@ -4,4 +4,4 @@ opcode-table:
 	tsc --strict src/opcode-table.ts --outFile opcode-table.js
 
 clean:
-	rm -rf index.html opcode-table.css
+	rm -rf index.html opcode-table.css opcode-table.js
