@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://clrhome.org/logo.css" type="text/css" rel="stylesheet" />
     <link href="opcode-table.css?v={$date}" type="text/css" rel="stylesheet" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25020274-2"></script>
-    <script src="/bin/js/ga.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JGMW6RW2WE"></script>
+    <script src="/bin/js/ga.js?v={$date}"></script>
     <script src="opcode-table.js?v={$date}"></script>
   </head>
   <body>
