@@ -563,7 +563,7 @@
   {
     "bytes": ["F3"],
     "cycles": "4",
-    "description": "Resets both interrupt flip-flops, thus prenting maskable interrupts from triggering.",
+    "description": "Resets both interrupt flip-flops, thus preventing maskable interrupts from triggering.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "DI"
   },
