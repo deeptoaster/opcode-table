@@ -1,6 +1,6 @@
 all: index.html opcode-table.css opcode-table.js
 
-index.html: src/index.php
+index.html: src/classes/*.class.php src/index.php src/templates/*.tpl
 	cd src && php -f index.php > ../index.html
 
 opcode-table.css: src/opcode-table.css

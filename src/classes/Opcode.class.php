@@ -61,6 +61,7 @@ class Opcode {
   public string $description;
   public OpcodeFlags $flags;
   public string $mnemonic;
+  public string $reference;
   public int $space;
 
   public function __clone() {
@@ -86,6 +87,9 @@ class Opcode {
     $this->description = $opcode_json->description;
     $this->flags = new OpcodeFlags($opcode_json->flags);
     $this->mnemonic = $opcode_json->mnemonic;
+    $this->reference = property_exists($opcode_json, 'reference')
+      ? $opcode_json->reference
+      : '';
     $this->space = count($opcode_json->bytes) +
         count(preg_grep('/^[a-z][a-z]$/', $opcode_json->bytes));
   }

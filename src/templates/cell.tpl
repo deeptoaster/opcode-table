@@ -19,7 +19,7 @@
     <dd>{$cell.flags.z}</dd>
     <dt>S</dt>
     <dd>{$cell.flags.s}</dd>
-    <dd>{$cell.description}</dd>
+    <dd>{$cell.description}{if $cell.reference} <a href="{$cell.reference}">Read More</a>{/if}</dd>
   </dl>
 {/if}{if $cell.tableId}
   <a href="#{$cell.tableId}">{$cell.tableName}</a>

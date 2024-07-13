@@ -74,7 +74,7 @@ li::before {
   vertical-align: -0.2em;
 }
 li.link::before,
-td a {
+td > a {
   border-color: #a6b8c1;
   background-color: #467286;
   color: #d2d7d9;
@@ -171,7 +171,7 @@ th emph:hover {
   display: none;
 }
 td::before,
-td a {
+td > a {
   position: absolute;
   top: 0;
   right: 0;
@@ -228,12 +228,18 @@ dt::after {
 dd {
   margin: 0 0 0.3em 0;
 }
-td a {
+dd a {
+  color: inherit;
+}
+dd a:hover {
+  color: #554600;
+}
+td > a {
   text-align: center;
   text-decoration: none;
   font-weight: bold;
   line-height: 4em;
 }
-td a:hover {
+td > a:hover {
   background-color: #27556c;
 }

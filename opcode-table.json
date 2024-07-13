@@ -1396,9 +1396,10 @@
   {
     "bytes": ["ED", "71"],
     "cycles": "12",
-    "description": "Outputs a zero to port C.",
+    "description": "Outputs a zero (on NMOS Z80s) or 255 (on CMOS Z80s) to port C.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "OUT (C),0",
+    "reference": "https://worldofspectrum.org/z88forever/dn327/z80undoc.htm",
     "undocumented": true
   },
   {
