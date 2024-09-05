@@ -3,35 +3,35 @@
     "bytes": ["8E"],
     "cycles": "7",
     "description": "Adds (HL) and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,(HL)"
   },
   {
     "bytes": ["DD", "8E", "d"],
     "cycles": "19",
     "description": "Adds the value pointed to by IX plus $d and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,(IX+d)"
   },
   {
     "bytes": ["FD", "8E", "d"],
     "cycles": "19",
     "description": "Adds the value pointed to by IY plus $d and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,(IY+d)"
   },
   {
     "bytes": ["CE", "n"],
     "cycles": "7",
     "description": "Adds $n and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,n"
   },
   {
     "bytes": ["r+$88"],
     "cycles": "4",
     "description": "Adds $r and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,r"
   },
   {
@@ -39,7 +39,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Adds $r and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,r",
     "undocumented": true
   },
@@ -48,7 +48,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Adds $r and the carry flag to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC A,r",
     "undocumented": true
   },
@@ -56,42 +56,42 @@
     "bytes": ["ED", "(dd<<4)+$4A"],
     "cycles": "15",
     "description": "Adds $dd and the carry flag to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADC HL,dd"
   },
   {
     "bytes": ["86"],
     "cycles": "7",
     "description": "Adds (HL) to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,(HL)"
   },
   {
     "bytes": ["DD", "86", "d"],
     "cycles": "19",
     "description": "Adds the value pointed to by IX plus $d to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,(IX+d)"
   },
   {
     "bytes": ["FD", "86", "d"],
     "cycles": "19",
     "description": "Adds the value pointed to by IY plus $d to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,(IY+d)"
   },
   {
     "bytes": ["C6", "n"],
     "cycles": "7",
     "description": "Adds $n to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,n"
   },
   {
     "bytes": ["r+$80"],
     "cycles": "4",
     "description": "Adds $r to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,r"
   },
   {
@@ -99,7 +99,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Adds $r to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,r",
     "undocumented": true
   },
@@ -108,7 +108,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Adds $r to A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "ADD A,r",
     "undocumented": true
   },
@@ -116,7 +116,7 @@
     "bytes": ["(dd<<4)+$09"],
     "cycles": "11",
     "description": "The value of $dd is added to HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD HL,dd"
   },
   {
@@ -124,7 +124,7 @@
     "category": "ix",
     "cycles": "15",
     "description": "The value of $dd is added to IX.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD IX,dd"
   },
   {
@@ -132,7 +132,7 @@
     "category": "iy",
     "cycles": "15",
     "description": "The value of $dd is added to IY.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "-", "s": "-", "z": "-" },
+    "flags": { "c": "+", "h": "+", "n": "0", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "ADD IY,dd"
   },
   {
@@ -402,35 +402,35 @@
     "bytes": ["BE"],
     "cycles": "7",
     "description": "Subtracts (HL) from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP (HL)"
   },
   {
     "bytes": ["DD", "BE", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IX plus $d from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP (IX+d)"
   },
   {
     "bytes": ["FD", "BE", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IY plus $d from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP (IY+d)"
   },
   {
     "bytes": ["FE", "n"],
     "cycles": "7",
     "description": "Subtracts $n from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP n"
   },
   {
     "bytes": ["r+$B8"],
     "cycles": "4",
     "description": "Subtracts $r from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP r"
   },
   {
@@ -438,7 +438,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Subtracts $r from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP r",
     "undocumented": true
   },
@@ -447,7 +447,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Subtracts $r from A and affects flags according to the result. A is not modified.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "CP r",
     "undocumented": true
   },
@@ -1284,7 +1284,7 @@
     "bytes": ["ED", "44"],
     "cycles": "8",
     "description": "The contents of A are negated (two's complement). Operation is the same as subtracting A from zero.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "NEG"
   },
   {
@@ -1872,35 +1872,35 @@
     "bytes": ["9E"],
     "cycles": "7",
     "description": "Subtracts (HL) and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,(HL)"
   },
   {
     "bytes": ["DD", "9E", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IX plus $d and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,(IX+d)"
   },
   {
     "bytes": ["FD", "9E", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IY plus $d and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,(IY+d)"
   },
   {
     "bytes": ["DE", "n"],
     "cycles": "7",
     "description": "Subtracts $n and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,n"
   },
   {
     "bytes": ["r+$98"],
     "cycles": "4",
     "description": "Subtracts $r and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,r"
   },
   {
@@ -1908,7 +1908,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Subtracts $r and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,r",
     "undocumented": true
   },
@@ -1917,7 +1917,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Subtracts $r and the carry flag from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC A,r",
     "undocumented": true
   },
@@ -1925,7 +1925,7 @@
     "bytes": ["ED", "(dd<<4)+$42"],
     "cycles": "15",
     "description": "Subtracts $dd and the carry flag from HL.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SBC HL,dd"
   },
   {
@@ -2171,35 +2171,35 @@
     "bytes": ["96"],
     "cycles": "7",
     "description": "Subtracts (HL) from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB (HL)"
   },
   {
     "bytes": ["DD", "96", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IX plus $d from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB (IX+d)"
   },
   {
     "bytes": ["FD", "96", "d"],
     "cycles": "19",
     "description": "Subtracts the value pointed to by IY plus $d from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB (IY+d)"
   },
   {
     "bytes": ["D6", "n"],
     "cycles": "7",
     "description": "Subtracts $n from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB n"
   },
   {
     "bytes": ["r+$90"],
     "cycles": "4",
     "description": "Subtracts $r from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB r"
   },
   {
@@ -2207,7 +2207,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Subtracts $r from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB r",
     "undocumented": true
   },
@@ -2216,7 +2216,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Subtracts $r from A.",
-    "flags": { "c": "+", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "+", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "SUB r",
     "undocumented": true
   },
