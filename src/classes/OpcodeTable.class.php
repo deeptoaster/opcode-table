@@ -32,10 +32,10 @@ final class OpcodeTable {
 
   const TABLE_NAMES = [
     '' => 'Main',
+    'ED' => 'Misc.',
     'CB' => 'Bit',
     'DD' => 'IX',
     'DDCB' => 'IX Bit',
-    'ED' => 'Misc.',
     'FD' => 'IY',
     'FDCB' => 'IY Bit'
   ];
@@ -63,15 +63,15 @@ final class OpcodeTable {
           $opcode
         );
       }
+    }
 
-      foreach (self::TABLE_NAMES as $prefix => $name) {
-        if ($prefix !== '') {
-          self::setElement(
-            $tables,
-            str_split($prefix, 2),
-            new OpcodeLink(strtolower($prefix), $name)
-          );
-        }
+    foreach (self::TABLE_NAMES as $prefix => $name) {
+      if ($prefix !== '') {
+        self::setElement(
+          $tables,
+          str_split($prefix, 2),
+          new OpcodeLink(strtolower($prefix), $name)
+        );
       }
     }
 
@@ -83,7 +83,11 @@ final class OpcodeTable {
       ksort($table->rows, SORT_STRING);
     }
 
-    ksort($tables, SORT_STRING);
+    uksort($tables, function($a, $b) {
+      return array_search($a, array_keys(self::TABLE_NAMES)) <=>
+          array_search($b, array_keys(self::TABLE_NAMES));
+    });
+
     return $tables;
   }
 
