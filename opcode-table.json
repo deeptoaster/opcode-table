@@ -497,21 +497,21 @@
     "bytes": ["35"],
     "cycles": "11",
     "description": "Subtracts one from (HL).",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC (HL)"
   },
   {
     "bytes": ["DD", "35", "d"],
     "cycles": "23",
     "description": "Subtracts one from the memory location pointed to by IX plus $d.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC (IX+d)"
   },
   {
     "bytes": ["FD", "35", "d"],
     "cycles": "23",
     "description": "Subtracts one from the memory location pointed to by IY plus $d.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC (IY+d)"
   },
   {
@@ -539,7 +539,7 @@
     "bytes": ["(r<<3)+$05"],
     "cycles": "4",
     "description": "Subtracts one from $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC r"
   },
   {
@@ -547,7 +547,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Subtracts one from $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC r",
     "undocumented": true
   },
@@ -556,7 +556,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Subtracts one from $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "1", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "DEC r",
     "undocumented": true
   },
@@ -685,21 +685,21 @@
     "bytes": ["34"],
     "cycles": "11",
     "description": "Adds one to (HL).",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC (HL)"
   },
   {
     "bytes": ["DD", "34", "d"],
     "cycles": "23",
     "description": "Adds one to the memory location pointed to by IX plus $d.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC (IX+d)"
   },
   {
     "bytes": ["FD", "34", "d"],
     "cycles": "23",
     "description": "Adds one to the memory location pointed to by IY plus $d.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC (IY+d)"
   },
   {
@@ -727,7 +727,7 @@
     "bytes": ["(r<<3)+$04"],
     "cycles": "4",
     "description": "Adds one to $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC r"
   },
   {
@@ -735,7 +735,7 @@
     "category": "ix",
     "cycles": "8",
     "description": "Adds one to $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC r",
     "undocumented": true
   },
@@ -744,7 +744,7 @@
     "category": "iy",
     "cycles": "8",
     "description": "Adds one to $r.",
-    "flags": { "c": "-", "h": "+", "n": "+", "p/v": "v", "s": "+", "z": "+" },
+    "flags": { "c": "-", "h": "+", "n": "0", "p/v": "v", "s": "+", "z": "+" },
     "mnemonic": "INC r",
     "undocumented": true
   },
