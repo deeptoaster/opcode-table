@@ -751,30 +751,34 @@
   {
     "bytes": ["ED", "AA"],
     "cycles": "16",
-    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
-    "mnemonic": "IND"
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
+    "mnemonic": "IND",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "BA"],
     "cycles": "21/16",
-    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
-    "mnemonic": "INDR"
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
+    "mnemonic": "INDR",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "A2"],
     "cycles": "16",
-    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
-    "mnemonic": "INI"
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
+    "mnemonic": "INI",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "B2"],
     "cycles": "21/16",
-    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
-    "mnemonic": "INIR"
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
+    "mnemonic": "INIR",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["E9"],
@@ -1366,9 +1370,10 @@
   {
     "bytes": ["ED", "BB"],
     "cycles": "21/16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
-    "mnemonic": "OTDR"
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
+    "mnemonic": "OTDR",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "83"],
@@ -1389,9 +1394,10 @@
   {
     "bytes": ["ED", "B3"],
     "cycles": "21/16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
-    "mnemonic": "OTIR"
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
+    "mnemonic": "OTIR",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "71"],
@@ -1427,16 +1433,18 @@
   {
     "bytes": ["ED", "AB"],
     "cycles": "16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
-    "mnemonic": "OUTD"
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
+    "mnemonic": "OUTD",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["ED", "A3"],
     "cycles": "16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented.",
-    "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
-    "mnemonic": "OUTI"
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented. Note that the carry flag may be affected, contrary to documentation.",
+    "flags": { "c": " ", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
+    "mnemonic": "OUTI",
+    "reference": "http://z80.info/z80undoc3.txt"
   },
   {
     "bytes": ["F1"],
