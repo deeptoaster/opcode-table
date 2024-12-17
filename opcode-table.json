@@ -654,7 +654,7 @@
   {
     "bytes": ["ED", "70"],
     "cycles": "12",
-    "description": "Inputs a byte from port C and affects flags only.",
+    "description": "Inputs a byte from the port at the 16-bit address contained in the BC register pair and affects flags only.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "IN (C)",
     "undocumented": true
@@ -662,14 +662,14 @@
   {
     "bytes": ["DB", "n"],
     "cycles": "11",
-    "description": "A byte from port $n is written to A.",
+    "description": "A byte from the port whose address is formed by A in the high bits and $n in the low bits is written to A.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "IN A,(n)"
   },
   {
     "bytes": ["ED", "(r<<3)+$40"],
     "cycles": "12",
-    "description": "A byte from port C is written to $r.",
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to $r.",
     "flags": { "c": "-", "h": "0", "n": "0", "p/v": "p", "s": "+", "z": "+" },
     "mnemonic": "IN r,(C)"
   },
@@ -751,28 +751,28 @@
   {
     "bytes": ["ED", "AA"],
     "cycles": "16",
-    "description": "A byte from port C is written to the memory location pointed to by HL. Then HL and B are decremented.",
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
     "mnemonic": "IND"
   },
   {
     "bytes": ["ED", "BA"],
     "cycles": "21/16",
-    "description": "A byte from port C is written to the memory location pointed to by HL. Then HL and B are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL and B are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "INDR"
   },
   {
     "bytes": ["ED", "A2"],
     "cycles": "16",
-    "description": "A byte from port C is written to the memory location pointed to by HL. Then HL is incremented and B is decremented.",
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
     "mnemonic": "INI"
   },
   {
     "bytes": ["ED", "B2"],
     "cycles": "21/16",
-    "description": "A byte from port C is written to the memory location pointed to by HL. Then HL is incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "A byte from the port at the 16-bit address contained in the BC register pair is written to the memory location pointed to by HL. Then HL is incremented and B is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "INIR"
   },
@@ -1350,7 +1350,7 @@
   {
     "bytes": ["ED", "8B"],
     "cycles": "14",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL and C are decremented.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL and C are decremented.",
     "flags": { "c": "+", "h": "+", "n": "*", "p/v": "p", "s": "+", "z": "*" },
     "mnemonic": "OTDM",
     "z180": true
@@ -1358,7 +1358,7 @@
   {
     "bytes": ["ED", "9B"],
     "cycles": "16/14",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL and C are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL and C are decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
     "mnemonic": "OTDMR",
     "z180": true
@@ -1366,14 +1366,14 @@
   {
     "bytes": ["ED", "BB"],
     "cycles": "21/16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "OTDR"
   },
   {
     "bytes": ["ED", "83"],
     "cycles": "14",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL and C are incremented.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL and C are incremented.",
     "flags": { "c": "+", "h": "+", "n": "*", "p/v": "p", "s": "+", "z": "*" },
     "mnemonic": "OTIM",
     "z180": true
@@ -1381,7 +1381,7 @@
   {
     "bytes": ["ED", "93"],
     "cycles": "16/14",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL and C are incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL and C are incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "0", "h": "0", "n": "*", "p/v": "1", "s": "0", "z": "1" },
     "mnemonic": "OTIMR",
     "z180": true
@@ -1389,14 +1389,14 @@
   {
     "bytes": ["ED", "B3"],
     "cycles": "21/16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL is incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented. If B is not zero, this operation is repeated. Interrupts can trigger while this instruction is processing.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "1" },
     "mnemonic": "OTIR"
   },
   {
     "bytes": ["ED", "71"],
     "cycles": "12",
-    "description": "Outputs a zero (on NMOS Z80s) or 255 (on CMOS Z80s) to port C.",
+    "description": "Outputs a zero (on NMOS Z80s) or 255 (on CMOS Z80s) to the port at the 16-bit address contained in the BC register pair.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "OUT (C),0",
     "reference": "https://worldofspectrum.org/z88forever/dn327/z80undoc.htm",
@@ -1405,14 +1405,14 @@
   {
     "bytes": ["ED", "(r<<3)+$41"],
     "cycles": "12",
-    "description": "The value of $r is written to port C.",
+    "description": "The value of $r is written to the port at the 16-bit address contained in the BC register pair.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "OUT (C),r"
   },
   {
     "bytes": ["D3", "n"],
     "cycles": "11",
-    "description": "The value of A is written to port $n.",
+    "description": "The value of A is written to the port whose address is formed by A in the high bits and $n in the low bits.",
     "flags": { "c": "-", "h": "-", "n": "-", "p/v": "-", "s": "-", "z": "-" },
     "mnemonic": "OUT (n),A"
   },
@@ -1427,14 +1427,14 @@
   {
     "bytes": ["ED", "AB"],
     "cycles": "16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL is decremented.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is decremented.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
     "mnemonic": "OUTD"
   },
   {
     "bytes": ["ED", "A3"],
     "cycles": "16",
-    "description": "B is decremented. A byte from the memory location pointed to by HL is written to port C. Then HL is incremented.",
+    "description": "B is decremented. A byte from the memory location pointed to by HL is written to the port at the 16-bit address contained in the BC register pair. Then HL is incremented.",
     "flags": { "c": "-", "h": " ", "n": "1", "p/v": " ", "s": " ", "z": "*" },
     "mnemonic": "OUTI"
   },
