@@ -107,6 +107,9 @@ table {
   border-spacing: 0.1875em;
   line-height: 1;
 }
+tr.empty + tr.empty {
+  display: none;
+}
 th,
 td {
   padding: 0.5em;
@@ -121,9 +124,19 @@ th {
   color: #a6b8c1;
   user-select: none;
 }
+tr.empty th,
+td {
+  color: #232627;
+}
+tr.empty th {
+  height: 1em;
+  padding: 0;
+  background-color: transparent;
+  font-size: 2em;
+  line-height: 0.5;
+}
 td {
   position: relative;
-  color: #232627;
 }
 tr:first-child th,
 tr + tr td {

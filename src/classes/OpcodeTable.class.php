@@ -12,6 +12,7 @@ final class OpcodeLink extends Immutable {
 
 final class OpcodeRow {
   public array $cells;
+  public bool $empty;
   public string $prefix;
 }
 
@@ -113,22 +114,29 @@ final class OpcodeTable {
       $table->name = self::TABLE_NAMES[$table_prefix];
       $table->prefix = $table_prefix;
       $table->rows = [];
+
+      for ($index = 0; $index < 16; $index++) {
+        $index_hex = strtoupper(dechex($index));
+        $row = new OpcodeRow();
+        $row->cells = [];
+        $row->empty = true;
+        $row->prefix = $index_hex;
+        $table->rows[$index_hex] = $row;
+      }
+
       $tables[$table_prefix] = $table;
     } else {
       $table = $tables[$table_prefix];
     }
 
-    if (!array_key_exists($row_index, $table->rows)) {
-      $row = new OpcodeRow();
-      $row->cells = [];
-      $row->prefix = $row_index;
-      $table->rows[$row_index] = $row;
+    $row = $table->rows[$row_index];
 
+    if ($row->empty) {
       for ($index = 0; $index < 16; $index++) {
         $row->cells[strtoupper(dechex($index))] = null;
       }
-    } else {
-      $row = $table->rows[$row_index];
+
+      $row->empty = false;
     }
 
     $row->cells[$column_index] = $element;
